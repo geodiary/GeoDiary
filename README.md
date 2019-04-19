@@ -14,7 +14,11 @@ GeoDiary remember the details of your favorite places so you don’t have to!
 
 ## How to run the app
 Clone to your local repository, open a terminal in repository.
-Type: open GeoDiary.xcworkspace/ 
+
+
+Type: open **GeoDiary.xcworkspace/** 
+
+
 If not working, check 
 * [CocoaPods.org](https://cocoapods.org/)
 * [Firebase documentation](https://console.firebase.google.com/u/0/project/geodiary-8f840/overview)
