@@ -18,6 +18,8 @@ Clone to your local repository, open a terminal in repository.
 
 Type: open **GeoDiary.xcworkspace/** 
 
+Please follow this way to start the project. 
+
 
 If not working, check 
 * [CocoaPods.org](https://cocoapods.org/)
