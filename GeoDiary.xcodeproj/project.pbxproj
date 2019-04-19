@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A8F13F77641A27FE5F49F55 /* Pods_GeoDiaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDA925BA247B0C3A7B23810 /* Pods_GeoDiaryUITests.framework */; };
+		2C4EF4A4D8F8341540F63608 /* Pods_GeoDiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E869C5F0C4EA861B16DAFE20 /* Pods_GeoDiaryTests.framework */; };
+		B6C84818B1B5E52EC3348DE5 /* Pods_GeoDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD68FFA3C24B6128A2F67016 /* Pods_GeoDiary.framework */; };
 		D9941DA62269811500D01F97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9941DA52269811500D01F97 /* AppDelegate.swift */; };
 		D9941DA82269811500D01F97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9941DA72269811500D01F97 /* ViewController.swift */; };
 		D9941DAB2269811500D01F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9941DA92269811500D01F97 /* Main.storyboard */; };
@@ -14,6 +17,9 @@
 		D9941DB02269811700D01F97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9941DAE2269811700D01F97 /* LaunchScreen.storyboard */; };
 		D9941DBB2269811700D01F97 /* GeoDiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9941DBA2269811700D01F97 /* GeoDiaryTests.swift */; };
 		D9941DC62269811700D01F97 /* GeoDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9941DC52269811700D01F97 /* GeoDiaryUITests.swift */; };
+		D9941DD42269848D00D01F97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9941DD32269848D00D01F97 /* GoogleService-Info.plist */; };
+		D9941DD52269848D00D01F97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9941DD32269848D00D01F97 /* GoogleService-Info.plist */; };
+		D9941DD62269848D00D01F97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9941DD32269848D00D01F97 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EF819DF9C5328EB9441202D /* Pods-GeoDiaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoDiaryUITests.release.xcconfig"; path = "Target Support Files/Pods-GeoDiaryUITests/Pods-GeoDiaryUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AAF6B277FA19544F6608A75B /* Pods-GeoDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoDiary.debug.xcconfig"; path = "Target Support Files/Pods-GeoDiary/Pods-GeoDiary.debug.xcconfig"; sourceTree = "<group>"; };
+		AD68FFA3C24B6128A2F67016 /* Pods_GeoDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCDA925BA247B0C3A7B23810 /* Pods_GeoDiaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoDiaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6C994C1E00BCAD2D21834D /* Pods-GeoDiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoDiaryUITests.debug.xcconfig"; path = "Target Support Files/Pods-GeoDiaryUITests/Pods-GeoDiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D9941DA22269811500D01F97 /* GeoDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9941DA52269811500D01F97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9941DA72269811500D01F97 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +58,11 @@
 		D9941DC12269811700D01F97 /* GeoDiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoDiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9941DC52269811700D01F97 /* GeoDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoDiaryUITests.swift; sourceTree = "<group>"; };
 		D9941DC72269811700D01F97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9941DD32269848D00D01F97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E5DF84ACAAFB47C7D486FEE4 /* Pods-GeoDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-GeoDiaryTests/Pods-GeoDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E869C5F0C4EA861B16DAFE20 /* Pods_GeoDiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoDiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F88B00ABD79A0EB66D66A3B7 /* Pods-GeoDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoDiary.release.xcconfig"; path = "Target Support Files/Pods-GeoDiary/Pods-GeoDiary.release.xcconfig"; sourceTree = "<group>"; };
+		F89AB419E3974AD17437CDF4 /* Pods-GeoDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoDiaryTests.release.xcconfig"; path = "Target Support Files/Pods-GeoDiaryTests/Pods-GeoDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6C84818B1B5E52EC3348DE5 /* Pods_GeoDiary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C4EF4A4D8F8341540F63608 /* Pods_GeoDiaryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +86,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A8F13F77641A27FE5F49F55 /* Pods_GeoDiaryUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3ED8DBF052959556301D0C00 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AD68FFA3C24B6128A2F67016 /* Pods_GeoDiary.framework */,
+				E869C5F0C4EA861B16DAFE20 /* Pods_GeoDiaryTests.framework */,
+				BCDA925BA247B0C3A7B23810 /* Pods_GeoDiaryUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D9941D992269811500D01F97 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +110,8 @@
 				D9941DB92269811700D01F97 /* GeoDiaryTests */,
 				D9941DC42269811700D01F97 /* GeoDiaryUITests */,
 				D9941DA32269811500D01F97 /* Products */,
+				FA08AF3FE2FC7F1D9E812960 /* Pods */,
+				3ED8DBF052959556301D0C00 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +134,7 @@
 				D9941DAC2269811700D01F97 /* Assets.xcassets */,
 				D9941DAE2269811700D01F97 /* LaunchScreen.storyboard */,
 				D9941DB12269811700D01F97 /* Info.plist */,
+				D9941DD32269848D00D01F97 /* GoogleService-Info.plist */,
 			);
 			path = GeoDiary;
 			sourceTree = "<group>";
@@ -125,6 +157,20 @@
 			path = GeoDiaryUITests;
 			sourceTree = "<group>";
 		};
+		FA08AF3FE2FC7F1D9E812960 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AAF6B277FA19544F6608A75B /* Pods-GeoDiary.debug.xcconfig */,
+				F88B00ABD79A0EB66D66A3B7 /* Pods-GeoDiary.release.xcconfig */,
+				E5DF84ACAAFB47C7D486FEE4 /* Pods-GeoDiaryTests.debug.xcconfig */,
+				F89AB419E3974AD17437CDF4 /* Pods-GeoDiaryTests.release.xcconfig */,
+				CE6C994C1E00BCAD2D21834D /* Pods-GeoDiaryUITests.debug.xcconfig */,
+				1EF819DF9C5328EB9441202D /* Pods-GeoDiaryUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +178,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9941DCA2269811700D01F97 /* Build configuration list for PBXNativeTarget "GeoDiary" */;
 			buildPhases = (
+				514F85C6C1FE41D2EC1BD4C7 /* [CP] Check Pods Manifest.lock */,
 				D9941D9E2269811500D01F97 /* Sources */,
 				D9941D9F2269811500D01F97 /* Frameworks */,
 				D9941DA02269811500D01F97 /* Resources */,
+				FA3FF60CD7670708ABC24F89 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +197,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9941DCD2269811700D01F97 /* Build configuration list for PBXNativeTarget "GeoDiaryTests" */;
 			buildPhases = (
+				5FDEAADB11EF72C5ED94014E /* [CP] Check Pods Manifest.lock */,
 				D9941DB22269811700D01F97 /* Sources */,
 				D9941DB32269811700D01F97 /* Frameworks */,
 				D9941DB42269811700D01F97 /* Resources */,
@@ -167,6 +216,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9941DD02269811700D01F97 /* Build configuration list for PBXNativeTarget "GeoDiaryUITests" */;
 			buildPhases = (
+				E42125B8899305223C5588E9 /* [CP] Check Pods Manifest.lock */,
 				D9941DBD2269811700D01F97 /* Sources */,
 				D9941DBE2269811700D01F97 /* Frameworks */,
 				D9941DBF2269811700D01F97 /* Resources */,
@@ -230,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9941DB02269811700D01F97 /* LaunchScreen.storyboard in Resources */,
+				D9941DD42269848D00D01F97 /* GoogleService-Info.plist in Resources */,
 				D9941DAD2269811700D01F97 /* Assets.xcassets in Resources */,
 				D9941DAB2269811500D01F97 /* Main.storyboard in Resources */,
 			);
@@ -239,6 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9941DD52269848D00D01F97 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,10 +298,104 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9941DD62269848D00D01F97 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		514F85C6C1FE41D2EC1BD4C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GeoDiary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5FDEAADB11EF72C5ED94014E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GeoDiaryTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E42125B8899305223C5588E9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GeoDiaryUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA3FF60CD7670708ABC24F89 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GeoDiary/Pods-GeoDiary-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GeoDiary/Pods-GeoDiary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D9941D9E2269811500D01F97 /* Sources */ = {
@@ -430,6 +576,7 @@
 		};
 		D9941DCB2269811700D01F97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAF6B277FA19544F6608A75B /* Pods-GeoDiary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -447,6 +594,7 @@
 		};
 		D9941DCC2269811700D01F97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F88B00ABD79A0EB66D66A3B7 /* Pods-GeoDiary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -464,6 +612,7 @@
 		};
 		D9941DCE2269811700D01F97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5DF84ACAAFB47C7D486FEE4 /* Pods-GeoDiaryTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -484,6 +633,7 @@
 		};
 		D9941DCF2269811700D01F97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F89AB419E3974AD17437CDF4 /* Pods-GeoDiaryTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -504,6 +654,7 @@
 		};
 		D9941DD12269811700D01F97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE6C994C1E00BCAD2D21834D /* Pods-GeoDiaryUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -523,6 +674,7 @@
 		};
 		D9941DD22269811700D01F97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EF819DF9C5328EB9441202D /* Pods-GeoDiaryUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
