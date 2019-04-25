@@ -10,7 +10,9 @@ import UIKit
 
 import Firebase
 
-class ViewController: UIViewController {
+import GoogleSignIn
+
+class ViewController: UIViewController, GIDSignInUIDelegate {
     
     var db : Firestore!
     
@@ -70,14 +72,24 @@ class ViewController: UIViewController {
         Firestore.firestore().settings = settings
         // [END setup]
         db = Firestore.firestore()
+        GIDSignIn.sharedInstance().uiDelegate = self
         
-        test1()
-        test2()
-        getCollection()
         
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
+    
+    @IBAction func GoogleSignOut(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            try GIDSignIn.sharedInstance()?.signOut()
+            
+        }
+        catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
 
 }
 
