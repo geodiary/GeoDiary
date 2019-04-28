@@ -16,22 +16,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
     
     var db : Firestore!
     
-    private func test1() {
-        // Add a new document with a generated ID
-        var ref: DocumentReference? = nil
-        ref = db.collection("users").addDocument(data: [
-            "first": "Ada",
-            "last": "Lovelace",
-            "born": 1815
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
-
-    }
     
     private func test2() {
         var ref: DocumentReference? = nil
@@ -52,18 +36,21 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     private func getCollection () {
-        db.collection("users").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
+        if(UserDefaults.standard.isLoggedIn()) {
+            let userID = Auth.auth().currentUser!.uid
+            print(userID)
+            db.collection("users").document(userID).collection("Brunch").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                    }
                 }
             }
+            
         }
-
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // [START setup]
@@ -74,22 +61,31 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
         db = Firestore.firestore()
         GIDSignIn.sharedInstance().uiDelegate = self
         
+        getCollection()
+        
         
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if(UserDefaults.standard.isLoggedIn()) {
+            performSegue(withIdentifier: "loggedin", sender: self)
+        }
+    }
     
-    @IBAction func GoogleSignOut(_ sender: Any) {
+    
+    @IBAction func signout(_ sender: Any) {
         do {
             try Auth.auth().signOut()
             try GIDSignIn.sharedInstance()?.signOut()
-            
+            UserDefaults.standard.setIsLoggedIn(value: false)
         }
         catch let error as NSError {
             print(error.localizedDescription)
         }
     }
     
+
 
 }
 

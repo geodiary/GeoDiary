@@ -10,6 +10,8 @@
 		1A8F13F77641A27FE5F49F55 /* Pods_GeoDiaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDA925BA247B0C3A7B23810 /* Pods_GeoDiaryUITests.framework */; };
 		2C4EF4A4D8F8341540F63608 /* Pods_GeoDiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E869C5F0C4EA861B16DAFE20 /* Pods_GeoDiaryTests.framework */; };
 		B6C84818B1B5E52EC3348DE5 /* Pods_GeoDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD68FFA3C24B6128A2F67016 /* Pods_GeoDiary.framework */; };
+		D96587CC2274E199002654F7 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96587CB2274E199002654F7 /* CollectionView.swift */; };
+		D96587CE2274EE32002654F7 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96587CD2274EE32002654F7 /* UserDefaultsHelper.swift */; };
 		D9941DA62269811500D01F97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9941DA52269811500D01F97 /* AppDelegate.swift */; };
 		D9941DA82269811500D01F97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9941DA72269811500D01F97 /* ViewController.swift */; };
 		D9941DAB2269811500D01F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9941DA92269811500D01F97 /* Main.storyboard */; };
@@ -45,6 +47,8 @@
 		AD68FFA3C24B6128A2F67016 /* Pods_GeoDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCDA925BA247B0C3A7B23810 /* Pods_GeoDiaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoDiaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C994C1E00BCAD2D21834D /* Pods-GeoDiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoDiaryUITests.debug.xcconfig"; path = "Target Support Files/Pods-GeoDiaryUITests/Pods-GeoDiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D96587CB2274E199002654F7 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		D96587CD2274EE32002654F7 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		D9941DA22269811500D01F97 /* GeoDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9941DA52269811500D01F97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9941DA72269811500D01F97 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 			children = (
 				D9941DA52269811500D01F97 /* AppDelegate.swift */,
 				D9941DA72269811500D01F97 /* ViewController.swift */,
+				D96587CB2274E199002654F7 /* CollectionView.swift */,
+				D96587CD2274EE32002654F7 /* UserDefaultsHelper.swift */,
 				D9941DA92269811500D01F97 /* Main.storyboard */,
 				D9941DAC2269811700D01F97 /* Assets.xcassets */,
 				D9941DAE2269811700D01F97 /* LaunchScreen.storyboard */,
@@ -438,7 +444,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D96587CC2274E199002654F7 /* CollectionView.swift in Sources */,
 				D9941DA82269811500D01F97 /* ViewController.swift in Sources */,
+				D96587CE2274EE32002654F7 /* UserDefaultsHelper.swift in Sources */,
 				D9941DA62269811500D01F97 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
