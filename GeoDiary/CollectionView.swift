@@ -23,9 +23,18 @@ class CollectionView: UIViewController, UITableViewDelegate, UITableViewDataSour
         let collectionName = collectionNames[indexPath.row]
         
         cell.collectionName.text = collectionName
-        print("Array is populated \(collectionNames)")
+        //print("Array is populated \(collectionNames)")
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "intoCollection", sender: collectionNames[indexPath.row])
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let scv = segue.destination as! SpecificCollectionView
+        scv.parentCollectionName = sender as! String
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -58,7 +67,7 @@ class CollectionView: UIViewController, UITableViewDelegate, UITableViewDataSour
                     print("Error getting documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
-                        print("\(document.documentID) => \(document.data())")
+                        //print("\(document.documentID) => \(document.data())")
                         self.collectionNames.append(document.documentID)
                     }
                 }
