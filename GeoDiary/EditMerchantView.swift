@@ -9,9 +9,18 @@
 import UIKit
 
 class EditMerchantView: UIViewController {
+    
+    var merchantInfo = Merchant()
 
+    @IBOutlet weak var editName: UITextField!
+    @IBOutlet weak var editDescription: UITextView!
+    @IBOutlet weak var editReminder: UITextView!
+    @IBOutlet weak var editComment: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        editName.text = merchantInfo.name
+        
 
         // Do any additional setup after loading the view.
     }

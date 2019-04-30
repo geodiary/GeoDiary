@@ -25,8 +25,13 @@ class SpecificMerchantView: UIViewController {
     
     
     @IBAction func edit(_ sender: Any) {
-        performSegue(withIdentifier: "editMerchant", sender: nil)
+        performSegue(withIdentifier: "editMerchant", sender: merchantInfo)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let emv = segue.destination as! EditMerchantView
+        emv.merchantInfo = sender as! Merchant
     }
     
 
