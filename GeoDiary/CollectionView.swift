@@ -38,6 +38,7 @@ class CollectionView: UIViewController, UITableViewDelegate, UITableViewDataSour
             scv.parentCollectionName = sender as! String}
         else if(segue.identifier == "addNewMerchant") {
             let anmv = segue.destination as! AddNewMerchantView
+            anmv.collectionNames = sender as! [String]
         }
     }
     
@@ -98,7 +99,7 @@ class CollectionView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     @IBAction func addNewPlace(_ sender: Any) {
-        performSegue(withIdentifier: "addNewMerchant", sender: nil)
+        performSegue(withIdentifier: "addNewMerchant", sender: collectionNames)
         
     }
     

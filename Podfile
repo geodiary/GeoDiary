@@ -10,6 +10,7 @@ target 'GeoDiary' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'Firebase/Storage'
 
   target 'GeoDiaryTests' do
     inherit! :search_paths

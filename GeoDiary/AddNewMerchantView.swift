@@ -12,9 +12,35 @@ import Firebase
 
 import GoogleSignIn
 
-class AddNewMerchantView: UIViewController {
+class AddNewMerchantView: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var db : Firestore!
+    var collectionNames = [String] ()
+    var newMerchant = Merchant()
+    
+    @IBOutlet weak var collectionName: UITextField!
+    @IBOutlet weak var currentCollection: UIPickerView!
+    @IBOutlet weak var addComment: UITextView!
+    @IBOutlet weak var addReminder: UITextView!
+    @IBOutlet weak var addDescription: UITextView!
+    @IBOutlet weak var addName: UITextField!
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return collectionNames.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return collectionNames[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        collectionName.text = collectionNames[row]
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +52,13 @@ class AddNewMerchantView: UIViewController {
         // [END setup]
         db = Firestore.firestore()
         
+        currentCollection.dataSource = self
+        currentCollection.delegate = self
+        
 
         // Do any additional setup after loading the view.
     }
+    
     
 
     /*
@@ -42,6 +72,40 @@ class AddNewMerchantView: UIViewController {
     */
 
     @IBAction func submitNew(_ sender: Any) {
+        if(UserDefaults.standard.isLoggedIn()) {
+            let userID = Auth.auth().currentUser!.uid
+            
+            let a = "users/"
+            let b = "/"
+            var path = String()
+            path = a + userID + b + collectionName.text!
+            
+            let data: [String:Any] = [:]
+            
+            if(collectionNames.contains(collectionName.text ?? "") == false) {
+                db.collection("users").document(userID).collection("CollectionNames").document(collectionName.text ?? "").setData(data)
+            }
+            
+            
+            // Add a new document with a generated id.
+            var ref: DocumentReference? = nil
+            ref = db.collection(path).addDocument(data:[
+                "name":addName.text,
+                "description": addDescription.text,
+                "reminder": addReminder.text,
+                "comment": addComment.text
+            ])
+            { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document added with ID: \(ref!.documentID)")
+                }
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+            
+        }
         
     }
     
