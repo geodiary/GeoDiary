@@ -22,6 +22,7 @@
 		D9941DD42269848D00D01F97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9941DD32269848D00D01F97 /* GoogleService-Info.plist */; };
 		D9941DD52269848D00D01F97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9941DD32269848D00D01F97 /* GoogleService-Info.plist */; };
 		D9941DD62269848D00D01F97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9941DD32269848D00D01F97 /* GoogleService-Info.plist */; };
+		D997214C227D353D006D0FAC /* AddNewMerchantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D997214B227D353D006D0FAC /* AddNewMerchantView.swift */; };
 		D9B7E1B722765FE900E28BFD /* SpecificCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7E1B622765FE900E28BFD /* SpecificCollectionView.swift */; };
 		D9B7E1B922766D9500E28BFD /* Merchant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7E1B822766D9500E28BFD /* Merchant.swift */; };
 		D9B7E1BB2276772C00E28BFD /* SpecificMerchantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7E1BA2276772C00E28BFD /* SpecificMerchantView.swift */; };
@@ -67,6 +68,7 @@
 		D9941DC52269811700D01F97 /* GeoDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoDiaryUITests.swift; sourceTree = "<group>"; };
 		D9941DC72269811700D01F97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9941DD32269848D00D01F97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D997214B227D353D006D0FAC /* AddNewMerchantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewMerchantView.swift; sourceTree = "<group>"; };
 		D9B7E1B622765FE900E28BFD /* SpecificCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificCollectionView.swift; sourceTree = "<group>"; };
 		D9B7E1B822766D9500E28BFD /* Merchant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchant.swift; sourceTree = "<group>"; };
 		D9B7E1BA2276772C00E28BFD /* SpecificMerchantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificMerchantView.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				D96587CB2274E199002654F7 /* CollectionView.swift */,
 				D96587CD2274EE32002654F7 /* UserDefaultsHelper.swift */,
 				D9941DA92269811500D01F97 /* Main.storyboard */,
+				D997214B227D353D006D0FAC /* AddNewMerchantView.swift */,
 				D9B7E1C022768D2700E28BFD /* EditMerchantView.swift */,
 				D9B7E1B622765FE900E28BFD /* SpecificCollectionView.swift */,
 				D9B7E1BA2276772C00E28BFD /* SpecificMerchantView.swift */,
@@ -461,6 +464,7 @@
 				D9B7E1B722765FE900E28BFD /* SpecificCollectionView.swift in Sources */,
 				D9941DA82269811500D01F97 /* ViewController.swift in Sources */,
 				D9B7E1C122768D2700E28BFD /* EditMerchantView.swift in Sources */,
+				D997214C227D353D006D0FAC /* AddNewMerchantView.swift in Sources */,
 				D96587CE2274EE32002654F7 /* UserDefaultsHelper.swift in Sources */,
 				D9941DA62269811500D01F97 /* AppDelegate.swift in Sources */,
 				D9B7E1B922766D9500E28BFD /* Merchant.swift in Sources */,

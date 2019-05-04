@@ -73,7 +73,7 @@ class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableView
                 } else {
                     for document in querySnapshot!.documents {
                         print("\(document.documentID) => \(document.data())")
-                        let merchant = Merchant(name: document.get("name") as! String)
+                        let merchant = Merchant(name: document.get("name") as! String, documentId: document.documentID, collection: self.parentCollectionName)
                         self.merchants.append(merchant)
                         
                     }

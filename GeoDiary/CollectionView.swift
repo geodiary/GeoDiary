@@ -33,8 +33,12 @@ class CollectionView: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "intoCollection") {
         let scv = segue.destination as! SpecificCollectionView
-        scv.parentCollectionName = sender as! String
+            scv.parentCollectionName = sender as! String}
+        else if(segue.identifier == "addNewMerchant") {
+            let anmv = segue.destination as! AddNewMerchantView
+        }
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -93,11 +97,16 @@ class CollectionView: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
+    @IBAction func addNewPlace(_ sender: Any) {
+        performSegue(withIdentifier: "addNewMerchant", sender: nil)
+        
+    }
     
     
     
     
 }
+
 
 
 class collectionnameCell: UITableViewCell {

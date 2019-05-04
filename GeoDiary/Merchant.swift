@@ -11,9 +11,13 @@ import UIKit
 
 class Merchant {
     var name = String()
+    var documentId = String()
+    var collection = String()
     
-    init(name: String) {
+    init(name: String, documentId: String, collection: String) {
         self.name = name
+        self.documentId = documentId
+        self.collection = collection
     }
     
     init() {
