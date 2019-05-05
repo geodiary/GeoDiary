@@ -27,6 +27,8 @@
 		D9B7E1B922766D9500E28BFD /* Merchant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7E1B822766D9500E28BFD /* Merchant.swift */; };
 		D9B7E1BB2276772C00E28BFD /* SpecificMerchantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7E1BA2276772C00E28BFD /* SpecificMerchantView.swift */; };
 		D9B7E1C122768D2700E28BFD /* EditMerchantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7E1C022768D2700E28BFD /* EditMerchantView.swift */; };
+		D9C79FD9227E416F00695340 /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C79FD8227E416F00695340 /* AddPhotoView.swift */; };
+		D9C79FDD227E567300695340 /* ImagePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C79FDC227E567300695340 /* ImagePost.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		D9B7E1B822766D9500E28BFD /* Merchant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchant.swift; sourceTree = "<group>"; };
 		D9B7E1BA2276772C00E28BFD /* SpecificMerchantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificMerchantView.swift; sourceTree = "<group>"; };
 		D9B7E1C022768D2700E28BFD /* EditMerchantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMerchantView.swift; sourceTree = "<group>"; };
+		D9C79FD8227E416F00695340 /* AddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
+		D9C79FDC227E567300695340 /* ImagePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePost.swift; sourceTree = "<group>"; };
 		E5DF84ACAAFB47C7D486FEE4 /* Pods-GeoDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-GeoDiaryTests/Pods-GeoDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E869C5F0C4EA861B16DAFE20 /* Pods_GeoDiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoDiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F88B00ABD79A0EB66D66A3B7 /* Pods-GeoDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoDiary.release.xcconfig"; path = "Target Support Files/Pods-GeoDiary/Pods-GeoDiary.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 		D9941DA42269811500D01F97 /* GeoDiary */ = {
 			isa = PBXGroup;
 			children = (
+				D9C79FDC227E567300695340 /* ImagePost.swift */,
+				D9C79FD8227E416F00695340 /* AddPhotoView.swift */,
 				D9941DA52269811500D01F97 /* AppDelegate.swift */,
 				D9941DA72269811500D01F97 /* ViewController.swift */,
 				D96587CB2274E199002654F7 /* CollectionView.swift */,
@@ -466,8 +472,10 @@
 				D9B7E1C122768D2700E28BFD /* EditMerchantView.swift in Sources */,
 				D997214C227D353D006D0FAC /* AddNewMerchantView.swift in Sources */,
 				D96587CE2274EE32002654F7 /* UserDefaultsHelper.swift in Sources */,
+				D9C79FD9227E416F00695340 /* AddPhotoView.swift in Sources */,
 				D9941DA62269811500D01F97 /* AppDelegate.swift in Sources */,
 				D9B7E1B922766D9500E28BFD /* Merchant.swift in Sources */,
+				D9C79FDD227E567300695340 /* ImagePost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
