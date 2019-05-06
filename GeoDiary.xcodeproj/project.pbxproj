@@ -55,7 +55,6 @@
 		BCDA925BA247B0C3A7B23810 /* Pods_GeoDiaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoDiaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C994C1E00BCAD2D21834D /* Pods-GeoDiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoDiaryUITests.debug.xcconfig"; path = "Target Support Files/Pods-GeoDiaryUITests/Pods-GeoDiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D9187721227F6F44006F5DFA /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
-		D9187723227FA384006F5DFA /* GeoDiary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GeoDiary.entitlements; sourceTree = "<group>"; };
 		D96587CB2274E199002654F7 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		D96587CD2274EE32002654F7 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		D9941DA22269811500D01F97 /* GeoDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,7 +146,6 @@
 		D9941DA42269811500D01F97 /* GeoDiary */ = {
 			isa = PBXGroup;
 			children = (
-				D9187723227FA384006F5DFA /* GeoDiary.entitlements */,
 				D9C79FD8227E416F00695340 /* AddPhotoView.swift */,
 				D9941DA52269811500D01F97 /* AppDelegate.swift */,
 				D9941DA72269811500D01F97 /* ViewController.swift */,

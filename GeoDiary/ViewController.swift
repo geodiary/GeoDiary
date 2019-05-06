@@ -16,25 +16,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
     
     var db : Firestore!
     
-    
-    private func test2() {
-        var ref: DocumentReference? = nil
-
-        // Add a second document with a generated ID.
-        ref = db.collection("users").addDocument(data: [
-            "first": "Alan",
-            "middle": "Mathison",
-            "last": "Turing",
-            "born": 1912
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
-    }
-    
     private func getCollection () {
         if(UserDefaults.standard.isLoggedIn()) {
             let userID = Auth.auth().currentUser!.uid
@@ -60,6 +41,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
         // [END setup]
         db = Firestore.firestore()
         GIDSignIn.sharedInstance().uiDelegate = self
+        
         
         getCollection()
         

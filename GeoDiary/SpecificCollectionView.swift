@@ -29,6 +29,23 @@ class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableView
         performSegue(withIdentifier: "intoMerchant", sender: merchants[indexPath.row])
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let delete = deleteAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    private func deleteAction(at indexPath: IndexPath)->UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            self.merchants.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            completion(true)
+        }
+        action.backgroundColor = .red
+        return action
+    
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let smv = segue.destination as! SpecificMerchantView
         smv.merchantInfo = sender as! Merchant
