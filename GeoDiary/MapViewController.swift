@@ -9,7 +9,12 @@
 import UIKit
 
 class MapViewController: UIViewController {
-
+    
+    
+    @IBAction func addNewMerchant(_ sender: Any) {
+        performSegue(withIdentifier: "addNewMerchantMap", sender: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

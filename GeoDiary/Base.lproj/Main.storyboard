@@ -13,7 +13,7 @@
         <!--Map-->
         <scene sceneID="rrc-R4-B70">
             <objects>
-                <viewController id="zM9-9i-UUq" sceneMemberID="viewController">
+                <viewController id="zM9-9i-UUq" customClass="MapViewController" customModule="GeoDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cDR-4Q-K4O">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,11 +35,14 @@
                     <navigationItem key="navigationItem" title="Map" id="tp5-2G-9MP">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="Xrb-2h-Bfa">
                             <connections>
-                                <segue destination="MRm-am-IRd" kind="presentation" id="PFE-hB-VnX"/>
+                                <action selector="addNewMerchant:" destination="zM9-9i-UUq" id="NQi-dR-yFZ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="WU1-kL-6so"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="uVV-zH-ftL" kind="presentation" identifier="addNewMerchantMap" id="D6P-oK-5pb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tas-2n-aWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -70,7 +73,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5pf-Fy-00z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="496" y="703"/>
+            <point key="canvasLocation" x="520" y="1180"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Jwo-LZ-6gh">
@@ -261,7 +264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xkg-Fy-bzB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2426.0869565217395" y="-714.50892857142856"/>
+            <point key="canvasLocation" x="1394" y="723"/>
         </scene>
         <!--Collection View-->
         <scene sceneID="EoP-1e-ltR">
@@ -749,4 +752,7 @@
             <point key="canvasLocation" x="-342.02898550724638" y="-877.23214285714278"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="X0H-dk-9Ik"/>
+    </inferredMetricsTieBreakers>
 </document>
