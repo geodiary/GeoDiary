@@ -17,22 +17,22 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     var mapMarker: GMSMarker!
     var mapFunctions: MapFunctions!
     
-    @IBAction func addNewMerchant(_ sender: Any) {
-        performSegue(withIdentifier: "addNewMerchantMap", sender: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Set initial location and marker on map
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 10)
-        let initialMapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: camera)
-        self.mapView = initialMapView
+        self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: camera)
         self.view.addSubview(self.mapView)
-        let location = CLLocationCoordinate2DMake(-33.86, 151.20)
-        let mapMarker = GMSMarker(position: location)
+        
+        let mapMarker = GMSMarker(position: CLLocationCoordinate2DMake(-33.86, 151.20))
+        mapMarker.title = ""
         self.mapMarker = mapMarker
         self.mapMarker.map = self.mapView
+    }
+    
+    @IBAction func addNewMerchant(_ sender: Any) {
+        performSegue(withIdentifier: "addNewMerchantMap", sender: nil)
     }
     
     @IBAction func searchByAddress(_ sender: UIBarButtonItem) {
@@ -45,17 +45,6 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         
         present(autocompleteController, animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension MapViewController: GMSAutocompleteViewControllerDelegate {
