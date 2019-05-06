@@ -134,13 +134,13 @@
                                 <rect key="frame" x="0.0" y="36" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="s9W-ts-ve9">
+                                    <navigationItem title="Add Location" id="s9W-ts-ve9">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="4d6-69-cHl">
                                             <connections>
                                                 <action selector="cancel:" destination="uVV-zH-ftL" id="Q5a-xe-Kbp"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Submit" id="zz6-rU-A49">
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="zz6-rU-A49">
                                             <connections>
                                                 <action selector="submitNew:" destination="uVV-zH-ftL" id="ufl-2C-stu"/>
                                             </connections>
@@ -244,7 +244,7 @@
             </objects>
             <point key="canvasLocation" x="1394" y="723"/>
         </scene>
-        <!--Collection View-->
+        <!--Collections-->
         <scene sceneID="EoP-1e-ltR">
             <objects>
                 <viewController id="vLG-CE-8kB" customClass="CollectionView" customModule="GeoDiary" customModuleProvider="target" sceneMemberID="viewController">
@@ -311,7 +311,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Lwx-yY-LH6"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Lgd-Ou-uh1"/>
+                    <navigationItem key="navigationItem" title="Collections" id="Lgd-Ou-uh1"/>
                     <connections>
                         <outlet property="tableView" destination="gJw-xa-xQr" id="NgD-zU-cy5"/>
                         <segue destination="Ysy-9T-5B5" kind="show" identifier="intoCollection" id="mIr-lt-CU5"/>
@@ -731,6 +731,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="D6P-oK-5pb"/>
+        <segue reference="X0H-dk-9Ik"/>
     </inferredMetricsTieBreakers>
 </document>
