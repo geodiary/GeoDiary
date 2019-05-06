@@ -37,6 +37,7 @@ class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableView
     
     private func deleteAction(at indexPath: IndexPath)->UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            self.cleanupDatabase(merchantToDel: self.merchants[indexPath.row])
             self.merchants.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             completion(true)
@@ -46,12 +47,65 @@ class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableView
     
     }
     
+    private func cleanupDatabase(merchantToDel: Merchant) {
+        let userID = Auth.auth().currentUser!.uid
+        let storageRef = Storage.storage().reference()
+        db.collection("users").document(userID).collection(merchantToDel.collection).document(merchantToDel.documentId).collection("photos").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    self.photoID.append(document.documentID)
+                    print("photoID => \(document.documentID)")
+                }
+                print("\(self.photoID.count)")
+                for photo in self.photoID {
+                    // Create a reference to the file to delete
+                    //let desertRef = storageRef.child("desert.jpg")
+                    let imageRef = storageRef.child("\(userID)/\(merchantToDel.collection)/\(merchantToDel.name)/\(photo)")
+                    
+                    
+                    // Delete the file
+                    imageRef.delete { error in
+                        if let error = error {
+                            // Uh-oh, an error occurred!
+                            print("err deleting => \(error)")
+                        } else {
+                            // File deleted successfully
+                            print("successfully delete")
+                        }
+                    }
+                    
+                    print("photo \(photo) deleted");
+                    self.db.collection("users").document(userID).collection(merchantToDel.collection).document(merchantToDel.documentId).collection("photos").document(photo).delete() {err in
+                        if let err = err {
+                            print("Error removing photo: \(err)")
+                        } else {
+                            print("photos! successfully removed!")
+                        }
+                    }
+                }
+                
+                self.db.collection("users").document(userID).collection(merchantToDel.collection).document(merchantToDel.documentId).delete() { err in
+                    if let err = err {
+                        print("Error removing document: \(err)")
+                    } else {
+                        print("Document successfully removed!")
+                    }
+                }
+                
+                
+            }
+        }
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let smv = segue.destination as! SpecificMerchantView
         smv.merchantInfo = sender as! Merchant
     }
     
-    
+    var photoID = [String] ()
     var parentCollectionName = String()
     var db : Firestore!
     var merchants = [Merchant] ()
