@@ -51,7 +51,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         if(UserDefaults.standard.isLoggedIn()) {
-            performSegue(withIdentifier: "loggedin", sender: self)
+            performSegue(withIdentifier: "start", sender: self)
         }
     }
     

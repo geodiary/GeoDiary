@@ -32,6 +32,36 @@ class CollectionView: UIViewController, UITableViewDelegate, UITableViewDataSour
         performSegue(withIdentifier: "intoCollection", sender: collectionNames[indexPath.row])
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let delete = deleteAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    private func deleteAction(at indexPath: IndexPath)->UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            self.cleanupDatabase(collectionToDel: self.collectionNames[indexPath.row])
+            self.collectionNames.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            completion(true)
+        }
+        action.backgroundColor = .red
+        return action
+        
+    }
+    
+    private func cleanupDatabase(collectionToDel: String) {
+        let userID = Auth.auth().currentUser!.uid
+        
+        db.collection("users").document(userID).collection("CollectionNames").document(collectionToDel).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "intoCollection") {
         let scv = segue.destination as! SpecificCollectionView

@@ -61,6 +61,7 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
+    
         
         getPhotos()
         
@@ -69,6 +70,8 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
         
         // Do any additional setup after loading the view.
     }
+    
+ 
     
     private func getPhotos() {
         let userID = Auth.auth().currentUser!.uid
@@ -96,8 +99,13 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
                                 print("image gotten")
                                 let image = UIImage(data: data!)
                                 media.image = image
-                                self.photos.append(media)
-                                self.tableView.reloadData()
+                                if(!self.photos.contains(where: { $0.downloadURL == media.downloadURL }))
+                                {
+                                    if(media.downloadURL != "") {
+                                        self.photos.append(media)
+                                    }
+                                }
+                                    self.tableView.reloadData()
                             }
                         }
                     }
@@ -120,6 +128,8 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
         performSegue(withIdentifier: "editMerchant", sender: merchantInfo)
         
     }
+    
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "editMerchant") {

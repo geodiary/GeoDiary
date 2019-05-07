@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate  {
 
     var window: UIWindow?
     
+    
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -55,7 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate  {
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if(UserDefaults.standard.isLoggedIn()) {
                     print(authResult?.user.email)}
-                    self.window?.rootViewController?.performSegue(withIdentifier: "loggedin", sender: nil)
+                    //self.window?.rootViewController?.performSegue(withIdentifier: "loggedin", sender: nil)
+                    self.window?.rootViewController?.performSegue(withIdentifier: "start", sender: nil)
             } else {
                 print(error?.localizedDescription)
             }
