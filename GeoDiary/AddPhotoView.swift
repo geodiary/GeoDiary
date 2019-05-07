@@ -152,7 +152,10 @@ class AddPhotoView: UIViewController {
             //newPost.save(merchant: self.merchantInfo)
             save(merchant: merchantInfo)
             
-            self.dismiss(animated: true, completion: nil)
+            //self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true) {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addPhotoIsDimissed"), object: nil)
+            }
         }
         //self.dismiss(animated: true, completion: nil)
     }

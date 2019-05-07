@@ -57,7 +57,10 @@ class EditMerchantView: UIViewController {
                     print("Document successfully updated")
                 }
             }
-            self.dismiss(animated: true, completion: nil)
+            //self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true) {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "editIsDimissed"), object: nil)
+            }
         }
     }
     

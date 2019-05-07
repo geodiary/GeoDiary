@@ -103,7 +103,10 @@ class AddNewMerchantView: UIViewController, UIPickerViewDataSource, UIPickerView
                 }
             }
             
-            self.dismiss(animated: true, completion: nil)
+            //self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true) {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "modalIsDimissed"), object: nil)
+            }
             
         }
         

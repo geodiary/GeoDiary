@@ -37,8 +37,6 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
     var merchantInfo = Merchant()
     var photos = [Media]()
     
-  
-    @IBOutlet weak var testImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addPhotos: UIButton!
     @IBOutlet weak var edit: UIButton!
@@ -69,11 +67,45 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handlePhotoModalDismissed),
+                                               name: NSNotification.Name(rawValue: "addPhotoIsDimissed"),
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleEditModalDismissed),
+                                               name: NSNotification.Name(rawValue: "editIsDimissed"),
+                                               object: nil)
+
+    }
+    
+    @objc func handlePhotoModalDismissed() {
+        getPhotos()
+        //self.tableView.reloadData()
+    }
+    
+    @objc func handleEditModalDismissed() {
+        
+        let userID = Auth.auth().currentUser!.uid
+        let docRef = db.collection("users").document(userID).collection(merchantInfo.collection).document(merchantInfo.documentId)
+        
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print("Document data: \(dataDescription)")
+                self.merchantInfo.name = document.get("name") as! String
+                self.merchantInfo.description = document.get("description") as! String
+                self.merchantName.text = self.merchantInfo.name
+            } else {
+                print("Document does not exist")
+            }
+        }
+        
+        
     }
     
  
     
-    private func getPhotos() {
+    func getPhotos() {
         let userID = Auth.auth().currentUser!.uid
         db.collection("users").document(userID).collection(merchantInfo.collection).document(merchantInfo.documentId).collection("photos").getDocuments() { (querySnapshot, err) in
             if let err = err {
