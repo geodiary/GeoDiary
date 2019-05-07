@@ -27,6 +27,8 @@ class AddPhotoView: UIViewController {
     var photoID = String()
     var downloadURL = String()
     
+    var addedPhoto = Media()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -149,9 +151,16 @@ class AddPhotoView: UIViewController {
             //let newPost = imagePost(image: self.takenImage, caption: self.captionTextView.text)
             //newPost.save(merchant: self.merchantInfo)
             save(merchant: merchantInfo)
+            
             self.dismiss(animated: true, completion: nil)
         }
         //self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        addedPhoto.downloadURL = self.downloadURL
+        addedPhoto.caption = self.captionTextView.text
+        
     }
     
     
