@@ -23,7 +23,7 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.caption.text = photos[indexPath.row].caption
         cell.photo.image = photos[indexPath.row].image
-        cell.caption.backgroundColor = .lightGray
+        cell.caption.backgroundColor = .white
 
         //cell.setCustomImage(image: photos[indexPath.row].image)
         
@@ -89,6 +89,7 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
                         
                         
                         // download image
+                        if(media.downloadURL != "") {
                         let httpsReference = Storage.storage().reference(forURL: media.downloadURL)
                         httpsReference.getData(maxSize: 100 * 1024 * 1024) { data, error in
                             if let error = error {
@@ -107,6 +108,9 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
                                 }
                                     self.tableView.reloadData()
                             }
+                            
+                            }
+                            
                         }
                     }
                 }
@@ -159,6 +163,7 @@ class photoCell: UITableViewCell {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var caption: UILabel!
 
+    
     
     internal var aspectConstraint : NSLayoutConstraint? {
         didSet {

@@ -22,7 +22,8 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         
         // Set initial location and marker on map
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 10)
-        self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: camera)
+        let initialView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: camera)
+        self.mapView = initialView
         self.view.addSubview(self.mapView)
         
         let mapMarker = GMSMarker(position: CLLocationCoordinate2DMake(-33.86, 151.20))
@@ -32,6 +33,8 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     }
     
     @IBAction func addNewMerchant(_ sender: Any) {
+        
+        
         performSegue(withIdentifier: "addNewMerchantMap", sender: nil)
     }
     
