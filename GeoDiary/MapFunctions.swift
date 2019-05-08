@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import CoreLocation
 
 class MapFunctions: NSObject {
     let geocodeURLBase = "https://maps.googleapis.com/maps/api/geocode/json?"
@@ -31,7 +32,7 @@ class MapFunctions: NSObject {
                 let geocodingDict = try! JSONSerialization.jsonObject(with: geocodingData, options: []) as! Dictionary<NSString, Any>
                 
                 var error: NSError?
-                if (error != nil) {
+                if error != nil {
                     completionHandler("", false)
                 } else {
                     let status = geocodingDict["status"] as! String
@@ -54,5 +55,29 @@ class MapFunctions: NSObject {
         } else {
             completionHandler("No valid address.", false)
         }
+    }
+    
+    func reverseGeocodeByCoordinates(latitude: Double!, longitude: Double!, withCompletionHandler completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location, completionHandler: {
+            (placemarks, error) in
+            if error != nil {
+                print("error with reverse geocoding")
+            }
+            else {
+                let placemarks = placemarks! as [CLPlacemark]
+                if placemarks.count > 0 {
+                    let placemark = placemarks[0] as CLPlacemark
+                    
+//                    print("country \(String(describing:placemark.country))")
+//                    print("locality \(String(describing:placemark.locality))")
+//                    print("sublocality \(String(describing: placemark.subLocality))")
+//                    print("thoroughfare \(String(describing: placemark.thoroughfare))")
+//                    print("postal code \(String(describing: placemark.postalCode))")
+//                    print("subthoroughfare \(String(describing: placemark.subThoroughfare))")
+                }
+            }
+        })
     }
 }

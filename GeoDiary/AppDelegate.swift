@@ -9,17 +9,14 @@
 import UIKit
 
 import Firebase
-
 import GoogleSignIn
-
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate  {
 
     var window: UIWindow?
-    
-    
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -28,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate  {
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
+        
+        GMSServices.provideAPIKey("AIzaSyC-FmDZukUgVq9FbgJmqN_vy0h8u3Bs4Ws")
+        GMSPlacesClient.provideAPIKey("AIzaSyC-FmDZukUgVq9FbgJmqN_vy0h8u3Bs4Ws")
         
         return true
     }

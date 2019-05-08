@@ -17,6 +17,7 @@ class AddNewMerchantView: UIViewController, UIPickerViewDataSource, UIPickerView
     var db : Firestore!
     var collectionNames = [String] ()
     var newMerchant = Merchant()
+    var location = Location()
     
     @IBOutlet weak var collectionName: UITextField!
     @IBOutlet weak var currentCollection: UIPickerView!
@@ -57,6 +58,8 @@ class AddNewMerchantView: UIViewController, UIPickerViewDataSource, UIPickerView
         
 
         // Do any additional setup after loading the view.
+        newMerchant.name = location.locationName
+//        newMerchant.address = location.locationAddress
     }
     
     
