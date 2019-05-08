@@ -145,6 +145,10 @@ class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableView
                     for document in querySnapshot!.documents {
                         print("\(document.documentID) => \(document.data())")
                         let merchant = Merchant(name: document.get("name") as! String, documentId: document.documentID, collection: self.parentCollectionName)
+                        merchant.description = document.get("description") as! String
+                        merchant.comment = document.get("comment") as! String
+                        merchant.reminder = document.get("reminder") as! String
+                        merchant.address = document.get("address") as! String
                         self.merchants.append(merchant)
                         
                     }
