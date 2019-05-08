@@ -29,9 +29,6 @@
 		D9B7E1BB2276772C00E28BFD /* SpecificMerchantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7E1BA2276772C00E28BFD /* SpecificMerchantView.swift */; };
 		D9B7E1C122768D2700E28BFD /* EditMerchantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B7E1C022768D2700E28BFD /* EditMerchantView.swift */; };
 		D9C79FD9227E416F00695340 /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C79FD8227E416F00695340 /* AddPhotoView.swift */; };
-		D9EDE7FD22826C9C00C2A9AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9EDE7FC22826C9C00C2A9AA /* GoogleService-Info.plist */; };
-		D9EDE7FE22826C9C00C2A9AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9EDE7FC22826C9C00C2A9AA /* GoogleService-Info.plist */; };
-		D9EDE7FF22826C9C00C2A9AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9EDE7FC22826C9C00C2A9AA /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +79,6 @@
 		D9B7E1BA2276772C00E28BFD /* SpecificMerchantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificMerchantView.swift; sourceTree = "<group>"; };
 		D9B7E1C022768D2700E28BFD /* EditMerchantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMerchantView.swift; sourceTree = "<group>"; };
 		D9C79FD8227E416F00695340 /* AddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
-		D9EDE7FC22826C9C00C2A9AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E5DF84ACAAFB47C7D486FEE4 /* Pods-GeoDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-GeoDiaryTests/Pods-GeoDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E869C5F0C4EA861B16DAFE20 /* Pods_GeoDiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoDiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F88B00ABD79A0EB66D66A3B7 /* Pods-GeoDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoDiary.release.xcconfig"; path = "Target Support Files/Pods-GeoDiary/Pods-GeoDiary.release.xcconfig"; sourceTree = "<group>"; };
@@ -152,7 +148,6 @@
 		D9941DA42269811500D01F97 /* GeoDiary */ = {
 			isa = PBXGroup;
 			children = (
-				D9EDE7FC22826C9C00C2A9AA /* GoogleService-Info.plist */,
 				D9C79FD8227E416F00695340 /* AddPhotoView.swift */,
 				D9941DA52269811500D01F97 /* AppDelegate.swift */,
 				D9941DA72269811500D01F97 /* ViewController.swift */,
@@ -321,7 +316,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9941DB02269811700D01F97 /* LaunchScreen.storyboard in Resources */,
-				D9EDE7FD22826C9C00C2A9AA /* GoogleService-Info.plist in Resources */,
 				D9941DAD2269811700D01F97 /* Assets.xcassets in Resources */,
 				D9941DAB2269811500D01F97 /* Main.storyboard in Resources */,
 			);
