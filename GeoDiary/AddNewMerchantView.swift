@@ -24,6 +24,7 @@ class AddNewMerchantView: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet weak var addReminder: UITextView!
     @IBOutlet weak var addDescription: UITextView!
     @IBOutlet weak var addName: UITextField!
+    @IBOutlet weak var address: UITextField!
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -93,7 +94,8 @@ class AddNewMerchantView: UIViewController, UIPickerViewDataSource, UIPickerView
                 "name":addName.text,
                 "description": addDescription.text,
                 "reminder": addReminder.text,
-                "comment": addComment.text
+                "comment": addComment.text,
+                "address": address.text
             ])
             { err in
                 if let err = err {

@@ -33,6 +33,9 @@ class EditMerchantView: UIViewController {
         db = Firestore.firestore()
         
         editName.text = merchantInfo.name
+        editComment.text = merchantInfo.comment
+        editReminder.text = merchantInfo.reminder
+        editDescription.text = merchantInfo.description
         
 
         // Do any additional setup after loading the view.
@@ -49,7 +52,10 @@ class EditMerchantView: UIViewController {
             
             // Set the "capital" field of the city 'DC'
             merchantRef.updateData([
-                "name": editName.text
+                "name": editName.text,
+                "description": editDescription.text,
+                "comment": editComment.text,
+                "reminder": editReminder.text
             ]) { err in
                 if let err = err {
                     print("Error updating document: \(err)")

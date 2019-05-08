@@ -37,6 +37,9 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
     var merchantInfo = Merchant()
     var photos = [Media]()
     
+    @IBOutlet weak var comments: UITextView!
+    @IBOutlet weak var reminder: UITextView!
+    @IBOutlet weak var address: UITextView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addPhotos: UIButton!
     @IBOutlet weak var edit: UIButton!
@@ -63,8 +66,16 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
         
         getPhotos()
         
-        merchantName.text = merchantInfo.name
+        print(merchantInfo.description)
         
+        
+        merchantName.text = merchantInfo.name
+        comments.text = merchantInfo.comment
+        reminder.text = merchantInfo.reminder
+        address.text = merchantInfo.address
+        merchantDescription.text = merchantInfo.description
+        
+        print(merchantDescription.text)
         
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self,
@@ -94,7 +105,15 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
                 print("Document data: \(dataDescription)")
                 self.merchantInfo.name = document.get("name") as! String
                 self.merchantInfo.description = document.get("description") as! String
+                self.merchantInfo.comment = document.get("comment") as! String
+                self.merchantInfo.reminder = document.get("reminder") as! String
+                self.merchantInfo.reminder = document.get("address") as! String
+                
                 self.merchantName.text = self.merchantInfo.name
+                self.comments.text = self.merchantInfo.comment
+                self.reminder.text = self.merchantInfo.reminder
+                self.address.text = self.merchantInfo.address
+                self.merchantDescription.text = self.merchantInfo.description
             } else {
                 print("Document does not exist")
             }
