@@ -14,6 +14,7 @@ import CoreLocation
 class MapFunctions: NSObject {
     let geocodeURLBase = "https://maps.googleapis.com/maps/api/geocode/json?"
     var geocodedFormattedAddress: String!
+    var constructedAddress: String!
     var geocodedLatitude: Double!
     var geocodedLongitude: Double!
     
@@ -68,7 +69,7 @@ class MapFunctions: NSObject {
                             self.geocodedFormattedAddress = ""
                         }
                         
-                        let geometry = firstAddressComponent["geometry"] as! Dictionary<NSString, AnyObject>
+                        let geometry = firstResult["geometry"] as! Dictionary<NSString, AnyObject>
                         self.geocodedLatitude = ((geometry["location"] as! Dictionary<NSString, AnyObject>)["lat"] as! NSNumber).doubleValue
                         self.geocodedLongitude = ((geometry["location"] as! Dictionary<NSString, AnyObject>)["lng"] as! NSNumber).doubleValue
                         
@@ -99,5 +100,13 @@ class MapFunctions: NSObject {
                 }
             }
         })
+    }
+    
+    func editOptionalStringValue(str: String!) -> String {
+        var strEdited = str.replacingOccurrences(of: "Optional(", with: "")
+        strEdited = strEdited.replacingOccurrences(of: ")", with: "")
+        strEdited = strEdited.replacingOccurrences(of: "\"", with: "")
+        print(strEdited)
+        return strEdited
     }
 }

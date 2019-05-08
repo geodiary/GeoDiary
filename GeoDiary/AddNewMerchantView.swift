@@ -57,7 +57,9 @@ class AddNewMerchantView: UIViewController, UIPickerViewDataSource, UIPickerView
         currentCollection.dataSource = self
         currentCollection.delegate = self
         
-
+        addName.text = location.locationName
+        address.text = location.locationAddress
+        
         // Do any additional setup after loading the view.
         newMerchant.name = location.locationName
 //        newMerchant.address = location.locationAddress
