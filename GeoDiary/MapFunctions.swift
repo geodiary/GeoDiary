@@ -38,9 +38,35 @@ class MapFunctions: NSObject {
                     let status = geocodingDict["status"] as! String
                     if status == "OK" {
                         let results = geocodingDict["results"] as! Array<Dictionary<NSString, AnyObject>>
-                        let firstAddressComponent = results[0]
-                        
-                        self.geocodedFormattedAddress = (firstAddressComponent["formatted_address"] as! String)
+                        let firstResult = results[0]
+
+                        if let formattedAddress = (firstResult["formatted_address"]) {
+                            self.geocodedFormattedAddress = (formattedAddress as! String)
+                            self.constructedAddress = ""
+                        } else {
+                            let addressComponents = firstResult["address_components"] as! Array<Dictionary<NSString, AnyObject>>
+                            var streetNumber: String!
+                            var route: String!
+                            var locality: String!
+                            var administrativeLevel1: String!
+                            var country: String!
+                            for component in addressComponents {
+                                let types = component["types"] as! Dictionary<NSString, AnyObject>
+                                if let type = types["street_number"] {
+                                    streetNumber = (type as! String)
+                                } else if let type = types["route"] {
+                                    route = (type as! String)
+                                } else if let type = types["locality"] {
+                                    locality = (type as! String)
+                                } else if let type = types["administrative_level_1"] {
+                                    administrativeLevel1 = (type as! String)
+                                } else if let type = types["country"] {
+                                    country = (type as! String)
+                                }
+                            }
+                            self.constructedAddress = streetNumber + " " + route + ", " + locality + ", " + administrativeLevel1 + ", " + country
+                            self.geocodedFormattedAddress = ""
+                        }
                         
                         let geometry = firstAddressComponent["geometry"] as! Dictionary<NSString, AnyObject>
                         self.geocodedLatitude = ((geometry["location"] as! Dictionary<NSString, AnyObject>)["lat"] as! NSNumber).doubleValue
@@ -69,13 +95,7 @@ class MapFunctions: NSObject {
                 let placemarks = placemarks! as [CLPlacemark]
                 if placemarks.count > 0 {
                     let placemark = placemarks[0] as CLPlacemark
-                    
-//                    print("country \(String(describing:placemark.country))")
-//                    print("locality \(String(describing:placemark.locality))")
-//                    print("sublocality \(String(describing: placemark.subLocality))")
-//                    print("thoroughfare \(String(describing: placemark.thoroughfare))")
-//                    print("postal code \(String(describing: placemark.postalCode))")
-//                    print("subthoroughfare \(String(describing: placemark.subThoroughfare))")
+                    // continue
                 }
             }
         })
