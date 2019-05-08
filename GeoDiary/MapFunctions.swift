@@ -104,6 +104,7 @@ class MapFunctions: NSObject {
                 let fullDirectionsURL = NSURL(string: directionsURLWithQueries)
                 
                 DispatchQueue.main.async {
+//                    let geocodingData = try! Data(contentsOf: fullGeocodeURL! as URL)
                     let directionsData = try! Data(contentsOf: fullDirectionsURL! as URL)
                     let directionsDict = try! JSONSerialization.jsonObject(with: directionsData, options: []) as! Dictionary<NSString, Any>
                     

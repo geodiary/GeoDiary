@@ -83,7 +83,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="routeMapView" destination="ZdO-T3-TUv" id="5VM-48-OGX"/>
+                        <outlet property="mapContainer" destination="ZdO-T3-TUv" id="inE-k2-bi1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pob-fi-g4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
