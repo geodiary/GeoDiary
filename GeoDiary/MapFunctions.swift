@@ -70,12 +70,14 @@ class MapFunctions: NSObject {
                 if placemarks.count > 0 {
                     let placemark = placemarks[0] as CLPlacemark
                     
+//                    print("country \(String(describing:placemark.country))")
+//                    print("locality \(String(describing:placemark.locality))")
+//                    print("sublocality \(String(describing: placemark.subLocality))")
+//                    print("thoroughfare \(String(describing: placemark.thoroughfare))")
+//                    print("postal code \(String(describing: placemark.postalCode))")
+//                    print("subthoroughfare \(String(describing: placemark.subThoroughfare))")
                 }
             }
         })
-    }
-    
-    func getDirectionsBetweenTwoLocations() {
-        
     }
 }
