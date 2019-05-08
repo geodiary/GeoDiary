@@ -53,17 +53,38 @@
             </objects>
             <point key="canvasLocation" x="-203" y="914"/>
         </scene>
-        <!--View Controller-->
+        <!--Route Planner-->
         <scene sceneID="Jwo-LZ-6gh">
             <objects>
-                <viewController id="sj3-hN-yWE" sceneMemberID="viewController">
+                <viewController id="sj3-hN-yWE" customClass="RouteViewController" customModule="GeoDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="myd-Vh-DYW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZdO-T3-TUv">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZdO-T3-TUv" firstAttribute="leading" secondItem="fgf-ta-QdU" secondAttribute="leading" id="IRU-ao-gQb"/>
+                            <constraint firstItem="ZdO-T3-TUv" firstAttribute="top" secondItem="fgf-ta-QdU" secondAttribute="top" id="Mbd-Wf-l8G"/>
+                            <constraint firstItem="fgf-ta-QdU" firstAttribute="bottom" secondItem="ZdO-T3-TUv" secondAttribute="bottom" id="cPf-tK-jsd"/>
+                            <constraint firstItem="fgf-ta-QdU" firstAttribute="trailing" secondItem="ZdO-T3-TUv" secondAttribute="trailing" id="pte-Zg-hyA"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fgf-ta-QdU"/>
                     </view>
-                    <navigationItem key="navigationItem" id="qt4-11-biF"/>
+                    <navigationItem key="navigationItem" title="Route Planner" id="qt4-11-biF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nRH-2r-Cx3">
+                            <connections>
+                                <action selector="createRoute:" destination="sj3-hN-yWE" id="lrA-A5-kfr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapContainer" destination="ZdO-T3-TUv" id="inE-k2-bi1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pob-fi-g4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -939,10 +960,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchscreen" width="612" height="792"/>
+        <image name="launchscreen" width="816" height="1056"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ryl-e6-4XC"/>
-        <segue reference="X0H-dk-9Ik"/>
+        <segue reference="D6P-oK-5pb"/>
     </inferredMetricsTieBreakers>
 </document>

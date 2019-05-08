@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
         self.currentPlaceFormattedAddress = "251 Mercer St, New York, NY 10012"
         
         self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: 40.728952, longitude: -73.995681, zoom: 12))
-        self.mapView.isMyLocationEnabled = true
+//        self.mapView.isMyLocationEnabled = true
         self.view.addSubview(self.mapView)
         
         self.mapMarker = GMSMarker(position: CLLocationCoordinate2DMake(40.728952, -73.995681))
