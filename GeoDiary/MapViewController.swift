@@ -40,12 +40,37 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func addNewMerchant(_ sender: Any) {
-        let location: Location!
+        
+        let location = Location()
+        
         if currentPlace != nil {
-            location = Location(name: self.currentPlace.name!, address: self.currentPlace.formattedAddress!, latitude: self.mapMarker.position.latitude, longitude: self.mapMarker.position.longitude)
+            if self.currentPlaceFormattedAddress != "" {
+                location.locationName = self.currentPlaceName
+                location.locationAddress = self.currentPlaceFormattedAddress
+                location.locationLatitude = self.mapMarker.position.latitude
+                location.locationLongitude = self.mapMarker.position.longitude
+            } else {
+                self.mapFunctions.geocodeAddressByPlaceID(searchedPlaceID: currentPlace.placeID, withCompletionHandler: { (status, success) -> Void in
+                    if !success {
+                        location.locationName = ""
+                        location.locationAddress = ""
+                        location.locationLatitude = 0.0
+                        location.locationLongitude = 0.0
+                    } else {
+                        location.locationName = self.currentPlaceName
+                        location.locationAddress = self.mapFunctions.constructedAddress
+                        location.locationLatitude = self.mapFunctions.geocodedLatitude
+                        location.locationLongitude = self.mapFunctions.geocodedLongitude
+                    }
+                })
+            }
         } else {
-            location = Location(name: self.currentPlaceName!, address: self.currentPlaceFormattedAddress, latitude: self.mapMarker.position.latitude, longitude: self.mapMarker.position.longitude)
+            location.locationName = self.currentPlaceName!
+            location.locationAddress = self.currentPlaceFormattedAddress
+            location.locationLatitude = self.mapMarker.position.latitude
+            location.locationLongitude = self.mapMarker.position.longitude
         }
+        
         performSegue(withIdentifier: "addNewMerchantMap", sender: location)
     }
     
@@ -80,8 +105,8 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
             } else {
                 // update current location
                 self.currentPlace = place
-                self.currentPlaceName = place.name
-                self.currentPlaceFormattedAddress = place.formattedAddress
+                self.currentPlaceName = self.mapFunctions.editOptionalStringValue(str: place.name)
+                self.currentPlaceFormattedAddress = self.mapFunctions.editOptionalStringValue(str: self.mapFunctions.geocodedFormattedAddress)
                 
                 self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: self.mapFunctions.geocodedLatitude, longitude: self.mapFunctions.geocodedLongitude, zoom: 15))
                 self.view.addSubview(self.mapView)

@@ -12,8 +12,10 @@ import GooglePlaces
 import CoreLocation
 
 class MapFunctions: NSObject {
+    
     let geocodeURLBase = "https://maps.googleapis.com/maps/api/geocode/json?"
     var geocodedFormattedAddress: String!
+    var constructedAddress: String!
     var geocodedLatitude: Double!
     var geocodedLongitude: Double!
     
@@ -38,11 +40,38 @@ class MapFunctions: NSObject {
                     let status = geocodingDict["status"] as! String
                     if status == "OK" {
                         let results = geocodingDict["results"] as! Array<Dictionary<NSString, AnyObject>>
-                        let firstAddressComponent = results[0]
+                        let firstResult = results[0]
                         
-                        self.geocodedFormattedAddress = (firstAddressComponent["formatted_address"] as! String)
+                        if let formattedAddress = (firstResult["formatted_address"]) {
+                            self.geocodedFormattedAddress = (formattedAddress as! String)
+                            self.constructedAddress = ""
+                        } else {
+                            let addressComponents = firstResult["address_components"] as! Array<Dictionary<NSString, AnyObject>>
+                            var streetNumber: String!
+                            var route: String!
+                            var locality: String!
+                            var administrativeLevel1: String!
+                            var country: String!
+                            for component in addressComponents {
+                                let types = component["types"] as! Dictionary<NSString, AnyObject>
+                                if let type = types["street_number"] {
+                                    streetNumber = (type as! String)
+                                } else if let type = types["route"] {
+                                    route = (type as! String)
+                                } else if let type = types["locality"] {
+                                    locality = (type as! String)
+                                } else if let type = types["administrative_level_1"] {
+                                    administrativeLevel1 = (type as! String)
+                                } else if let type = types["country"] {
+                                    country = (type as! String)
+                                }
+                            }
+                            self.constructedAddress = streetNumber + " " + route + ", " + locality + ", " + administrativeLevel1 + ", " + country
+                            self.geocodedFormattedAddress = ""
+                        }
                         
-                        let geometry = firstAddressComponent["geometry"] as! Dictionary<NSString, AnyObject>
+                        
+                        let geometry = firstResult["geometry"] as! Dictionary<NSString, AnyObject>
                         self.geocodedLatitude = ((geometry["location"] as! Dictionary<NSString, AnyObject>)["lat"] as! NSNumber).doubleValue
                         self.geocodedLongitude = ((geometry["location"] as! Dictionary<NSString, AnyObject>)["lng"] as! NSNumber).doubleValue
                         
@@ -73,6 +102,14 @@ class MapFunctions: NSObject {
                 }
             }
         })
+    }
+    
+    func editOptionalStringValue(str: String!) -> String {
+        var strEdited = str.replacingOccurrences(of: "Optional(", with: "")
+        strEdited = strEdited.replacingOccurrences(of: ")", with: "")
+        strEdited = strEdited.replacingOccurrences(of: "\"", with: "")
+        print(strEdited)
+        return strEdited
     }
     
     func getDirectionsBetweenTwoLocations() {
