@@ -10,6 +10,7 @@
 		1A8F13F77641A27FE5F49F55 /* Pods_GeoDiaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDA925BA247B0C3A7B23810 /* Pods_GeoDiaryUITests.framework */; };
 		2C4EF4A4D8F8341540F63608 /* Pods_GeoDiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E869C5F0C4EA861B16DAFE20 /* Pods_GeoDiaryTests.framework */; };
 		66877EAC2283158C00743241 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66877EAB2283158C00743241 /* GoogleService-Info.plist */; };
+		66877EAE22831AE700743241 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66877EAD22831AE700743241 /* RouteViewController.swift */; };
 		66DB5D8A227FEAE6004D5AE0 /* MapFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DB5D89227FEAE6004D5AE0 /* MapFunctions.swift */; };
 		66DB5D8C227FEB11004D5AE0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DB5D8B227FEB11004D5AE0 /* MapViewController.swift */; };
 		66F9938222823D5F0039E7DE /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F9938122823D5F0039E7DE /* Location.swift */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		1EF819DF9C5328EB9441202D /* Pods-GeoDiaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoDiaryUITests.release.xcconfig"; path = "Target Support Files/Pods-GeoDiaryUITests/Pods-GeoDiaryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		66877EAB2283158C00743241 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		66877EAD22831AE700743241 /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		66DB5D89227FEAE6004D5AE0 /* MapFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFunctions.swift; sourceTree = "<group>"; };
 		66DB5D8B227FEB11004D5AE0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		66F9938122823D5F0039E7DE /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				D9941DAC2269811700D01F97 /* Assets.xcassets */,
 				D9941DAE2269811700D01F97 /* LaunchScreen.storyboard */,
 				D9941DB12269811700D01F97 /* Info.plist */,
+				66877EAD22831AE700743241 /* RouteViewController.swift */,
 			);
 			path = GeoDiary;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				D9941DA82269811500D01F97 /* ViewController.swift in Sources */,
 				66F9938222823D5F0039E7DE /* Location.swift in Sources */,
 				66DB5D8C227FEB11004D5AE0 /* MapViewController.swift in Sources */,
+				66877EAE22831AE700743241 /* RouteViewController.swift in Sources */,
 				D9B7E1C122768D2700E28BFD /* EditMerchantView.swift in Sources */,
 				D997214C227D353D006D0FAC /* AddNewMerchantView.swift in Sources */,
 				D96587CE2274EE32002654F7 /* UserDefaultsHelper.swift in Sources */,
