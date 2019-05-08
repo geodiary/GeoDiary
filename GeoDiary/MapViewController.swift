@@ -78,16 +78,16 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
             if !success {
                 // TODO: handle error
             } else {
-                // update current location using the updated mapStuff values
-                let newCamera = GMSCameraPosition.camera(withLatitude: self.mapFunctions.geocodedLatitude, longitude: self.mapFunctions.geocodedLongitude, zoom: 15)
-                let newMapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: newCamera)
-                self.mapView = newMapView
-                self.view.addSubview(newMapView)
+                // update current location
+                self.currentPlace = place
+                self.currentPlaceName = place.name
+                self.currentPlaceFormattedAddress = place.formattedAddress
                 
-                let newMapMarker = GMSMarker()
-                newMapMarker.position = CLLocationCoordinate2DMake(self.mapFunctions.geocodedLatitude, self.mapFunctions.geocodedLongitude)
-                newMapMarker.title = place.name
-                self.mapMarker = newMapMarker
+                self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: self.mapFunctions.geocodedLatitude, longitude: self.mapFunctions.geocodedLongitude, zoom: 15))
+                self.view.addSubview(self.mapView)
+                
+                self.mapMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.mapFunctions.geocodedLatitude, self.mapFunctions.geocodedLongitude))
+                self.mapMarker.title = place.name
                 self.mapMarker.map = self.mapView
             }
         })
