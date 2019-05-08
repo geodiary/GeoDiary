@@ -12,7 +12,20 @@ import Firebase
 
 import GoogleSignIn
 
-class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate  {
+class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerPreviewingDelegate  {
+    
+    //Set up 3D Touch
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        previewingContext.sourceRect = view.frame
+        return SpecificMerchantView()
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        let smv = SpecificMerchantView()
+        navigationController?.pushViewController(smv, animated: true)
+    }
+    
+    
     //Search Bar set up
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchMerchants = merchantsName.filter({$0.prefix(searchText.count) == searchText})
@@ -141,8 +154,15 @@ class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionName: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Set up for 3D Touch.
+        if traitCollection.forceTouchCapability == UIForceTouchCapability.available{
+            registerForPreviewing(with: self, sourceView: view)
+            }
         
         print(parentCollectionName)
         collectionName.text = parentCollectionName
@@ -162,6 +182,10 @@ class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableView
 
         // Do any additional setup after loading the view.
     }
+    
+    
+    
+    
     
     private func getMerchants() {
         if(UserDefaults.standard.isLoggedIn()) {
