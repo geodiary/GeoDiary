@@ -34,6 +34,10 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     }
     
     @IBAction func addNewMerchant(_ sender: Any) {
+        print(self.currentPlace.name ?? "")
+        print(self.currentPlace.formattedAddress ?? "")
+        print(self.mapMarker.position.latitude)
+        print(self.mapMarker.position.longitude)
         let location = Location(name: self.currentPlace.name!, address: self.currentPlace.formattedAddress!, latitude: self.mapMarker.position.latitude, longitude: self.mapMarker.position.longitude)
         
         performSegue(withIdentifier: "addNewMerchantMap", sender: location)

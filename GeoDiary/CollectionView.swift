@@ -13,16 +13,38 @@ import Firebase
 
 import GoogleSignIn
 
-class CollectionView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class CollectionView: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate  {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchCollection = collectionNames.filter({$0.prefix(searchText.count) == searchText})
+        searching = true
+        self.tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        searchBar.text = ""
+        self.tableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return collectionNames.count
+        if searching {
+            return searchCollection.count
+        } else {
+            return collectionNames.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "collectionnameCell", for: indexPath) as! collectionnameCell
-        let collectionName = collectionNames[indexPath.row]
         
-        cell.collectionName.text = collectionName
+        if searching {
+            cell.collectionName.text = searchCollection[indexPath.row]
+        } else {
+            let collectionName = collectionNames[indexPath.row]
+            cell.collectionName.text = collectionName
+        }
+        
         //print("Array is populated \(collectionNames)")
         
         return cell
@@ -72,10 +94,13 @@ class CollectionView: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     var db : Firestore!
     var collectionNames = [String] ()
+    var searchCollection = [String] ()
+    var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +113,7 @@ class CollectionView: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.dataSource = self
         tableView.delegate = self
+        searchBar.delegate = self
         
         getCollectionNames()
         
@@ -159,3 +185,4 @@ class collectionnameCell: UITableViewCell {
     @IBOutlet weak var collectionName: UILabel!
     
 }
+

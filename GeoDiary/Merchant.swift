@@ -28,4 +28,5 @@ class Merchant {
         self.name = ""
     }
     
+    
 }

@@ -107,7 +107,7 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
                 self.merchantInfo.description = document.get("description") as! String
                 self.merchantInfo.comment = document.get("comment") as! String
                 self.merchantInfo.reminder = document.get("reminder") as! String
-                self.merchantInfo.reminder = document.get("address") as! String
+                self.merchantInfo.address = document.get("address") as! String
                 
                 self.merchantName.text = self.merchantInfo.name
                 self.comments.text = self.merchantInfo.comment
