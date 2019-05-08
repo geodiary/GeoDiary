@@ -16,6 +16,7 @@ class Merchant {
     var description = String()
     var reminder = String()
     var comment = String()
+    var address = String()
     
     init(name: String, documentId: String, collection: String) {
         self.name = name

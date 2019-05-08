@@ -8,6 +8,7 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import CoreLocation
 
 class MapViewController: UIViewController, UISearchBarDelegate {
     
@@ -15,14 +16,15 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     var mapView: GMSMapView!
     var mapMarker: GMSMarker!
     var mapFunctions: MapFunctions!
+    var currentPlace: GMSPlace!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapFunctions = MapFunctions()
         
         // Set initial location and marker on map
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 10)
-        let initialView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: camera)
-        self.mapView = initialView
+        self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: camera)
         self.view.addSubview(self.mapView)
         
         let mapMarker = GMSMarker(position: CLLocationCoordinate2DMake(-33.86, 151.20))
@@ -32,9 +34,16 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     }
     
     @IBAction func addNewMerchant(_ sender: Any) {
+        let location = Location(name: self.currentPlace.name!, address: self.currentPlace.formattedAddress!, latitude: self.mapMarker.position.latitude, longitude: self.mapMarker.position.longitude)
         
-        
-        performSegue(withIdentifier: "addNewMerchantMap", sender: nil)
+        performSegue(withIdentifier: "addNewMerchantMap", sender: location)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "addNewMerchantMap") {
+            let anmv = segue.destination as! AddNewMerchantView
+            anmv.location = sender as! Location
+        }
     }
     
     @IBAction func searchByAddress(_ sender: UIBarButtonItem) {
@@ -53,7 +62,6 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         
-        self.mapFunctions = MapFunctions()
         self.mapFunctions.geocodeAddressByPlaceID(searchedPlaceID: place.placeID, withCompletionHandler: { (status, success) -> Void in
             
             if !success {
