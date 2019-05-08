@@ -91,7 +91,17 @@ class CollectionView: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         getCollectionNames()
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleModalDismissed),
+                                               name: NSNotification.Name(rawValue: "modalIsDimissed"),
+                                               object: nil)
         
+        
+    }
+    
+    @objc func handleModalDismissed() {
+        getCollectionNames()
+        self.tableView.reloadData()
     }
     
     private func getCollectionNames() {
@@ -103,7 +113,11 @@ class CollectionView: UIViewController, UITableViewDelegate, UITableViewDataSour
                 } else {
                     for document in querySnapshot!.documents {
                         //print("\(document.documentID) => \(document.data())")
-                        self.collectionNames.append(document.documentID)
+                        if(!self.collectionNames.contains(where: { $0 == document.documentID }))
+                        {
+                            self.collectionNames.append(document.documentID)
+                            
+                        }
                     }
                 }
                 self.tableView.reloadData()
