@@ -5,37 +5,47 @@
 //  Created by Sabah Siddique on 5/6/19.
 //  Copyright © 2019 nyu.edu. All rights reserved.
 //
+
 import UIKit
 import GoogleMaps
 import GooglePlaces
 import CoreLocation
 
-class MapViewController: UIViewController, UISearchBarDelegate {
+class MapViewController: UIViewController {
     
     @IBOutlet weak var mapContainer: UIView!
     var mapView: GMSMapView!
     var mapMarker: GMSMarker!
     var mapFunctions: MapFunctions!
     var currentPlace: GMSPlace!
+    var currentPlaceName: String!
+    var currentPlaceFormattedAddress: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.mapFunctions = MapFunctions()
         
         // Set initial location and marker on map
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 10)
-        self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: camera)
+        self.currentPlaceName = "Courant Institute of Mathematical Sciences - New York University"
+        self.currentPlaceFormattedAddress = "251 Mercer St, New York, NY 10012"
+        
+        self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: 40.728952, longitude: -73.995681, zoom: 12))
+        self.mapView.isMyLocationEnabled = true
         self.view.addSubview(self.mapView)
         
-        let mapMarker = GMSMarker(position: CLLocationCoordinate2DMake(-33.86, 151.20))
-        mapMarker.title = ""
-        self.mapMarker = mapMarker
+        self.mapMarker = GMSMarker(position: CLLocationCoordinate2DMake(40.728952, -73.995681))
+        self.mapMarker.title = self.currentPlaceName
         self.mapMarker.map = self.mapView
     }
     
     @IBAction func addNewMerchant(_ sender: Any) {
-        let location = Location(name: self.currentPlace.name!, address: self.currentPlace.formattedAddress!, latitude: self.mapMarker.position.latitude, longitude: self.mapMarker.position.longitude)
-        
+        let location: Location!
+        if currentPlace != nil {
+            location = Location(name: self.currentPlace.name!, address: self.currentPlace.formattedAddress!, latitude: self.mapMarker.position.latitude, longitude: self.mapMarker.position.longitude)
+        } else {
+            location = Location(name: self.currentPlaceName!, address: self.currentPlaceFormattedAddress, latitude: self.mapMarker.position.latitude, longitude: self.mapMarker.position.longitude)
+        }
         performSegue(withIdentifier: "addNewMerchantMap", sender: location)
     }
     
@@ -45,6 +55,9 @@ class MapViewController: UIViewController, UISearchBarDelegate {
             anmv.location = sender as! Location
         }
     }
+}
+
+extension MapViewController: UISearchBarDelegate {
     
     @IBAction func searchByAddress(_ sender: UIBarButtonItem) {
         let autocompleteController = GMSAutocompleteViewController()
@@ -61,9 +74,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
 extension MapViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        
         self.mapFunctions.geocodeAddressByPlaceID(searchedPlaceID: place.placeID, withCompletionHandler: { (status, success) -> Void in
-            
             if !success {
                 // TODO: handle error
             } else {
