@@ -12,16 +12,41 @@ import Firebase
 
 import GoogleSignIn
 
-class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate  {
+    //Search Bar set up
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchMerchants = merchantsName.filter({$0.prefix(searchText.count) == searchText})
+        searching = true
+        self.tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        searchBar.text = ""
+        self.tableView.reloadData()
+    }
+    
+    
+    
+    
+    //Table view set up
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return merchants.count
+        if searching {
+            return searchMerchants.count
+        } else {
+            return merchants.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "merchantnameCell", for: indexPath) as! merchantnameCell
-        let merchantName = merchants[indexPath.row].name
         
-        cell.merchantName.text = merchantName
+        if searching  {
+            cell.merchantName.text = searchMerchants[indexPath.row]
+        } else {
+            let merchantName = merchants[indexPath.row].name
+            cell.merchantName.text = merchantName
+        }
         return cell
     }
    
@@ -109,7 +134,11 @@ class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableView
     var parentCollectionName = String()
     var db : Firestore!
     var merchants = [Merchant] ()
+    var merchantsName = [String] ()
+    var searchMerchants = [String] ()
+    var searching = false
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionName: UILabel!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -127,6 +156,7 @@ class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableView
         
         tableView.dataSource = self
         tableView.delegate = self
+        searchBar.delegate = self
         
         getMerchants()
 
@@ -151,6 +181,7 @@ class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableView
                         merchant.address = document.get("address") as! String
                         self.merchants.append(merchant)
                         
+                        self.merchantsName.append(merchant.name)
                     }
                     self.tableView.reloadData()
                 }
