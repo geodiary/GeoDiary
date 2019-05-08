@@ -57,25 +57,42 @@ class AddNewMerchantView: UIViewController, UIPickerViewDataSource, UIPickerView
         currentCollection.dataSource = self
         currentCollection.delegate = self
         
+        
+        
         addName.text = location.locationName
         address.text = location.locationAddress
         
+        getCollectionNames()
+        
+        
+        
         // Do any additional setup after loading the view.
-        newMerchant.name = location.locationName
+        //newMerchant.name = location.locationName
 //        newMerchant.address = location.locationAddress
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func getCollectionNames() {
+        if(UserDefaults.standard.isLoggedIn()) {
+            let userID = Auth.auth().currentUser!.uid
+            db.collection("users").document(userID).collection("CollectionNames").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        //print("\(document.documentID) => \(document.data())")
+                        if(!self.collectionNames.contains(where: { $0 == document.documentID }))
+                        {
+                            self.collectionNames.append(document.documentID)
+                            
+                        }
+                    }
+                    //print(self.collectionNames)
+                    self.currentCollection.reloadAllComponents()
+                }
+            }
+        }
     }
-    */
+
 
     @IBAction func submitNew(_ sender: Any) {
         if(UserDefaults.standard.isLoggedIn()) {

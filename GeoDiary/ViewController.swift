@@ -41,10 +41,13 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
         // [END setup]
         db = Firestore.firestore()
         GIDSignIn.sharedInstance().uiDelegate = self
+       
+        //UserDefaults.standard.setIsLoggedIn(value: false)
         
         
         getCollection()
         
+       
         
         // Do any additional setup after loading the view, typically from a nib.
     }
