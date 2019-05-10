@@ -100,7 +100,7 @@ class MapFunctions: NSObject {
         
         if let origin = originPlaceID {
             if let destination = destinationPlaceID {
-                var directionsURLWithQueries = directionsURLBase + "origin=" + origin + "&destination=" + destination + "&key=AIzaSyC1-unUawDB5JY6ZPZU4wwc2HlZb8wMIHw"
+                var directionsURLWithQueries = directionsURLBase + "origin=place_id:" + origin + "&destination=place_id:" + destination + "&key=AIzaSyC-FmDZukUgVq9FbgJmqN_vy0h8u3Bs4Ws"
                 let fullDirectionsURL = NSURL(string: directionsURLWithQueries)
                 
                 DispatchQueue.main.async {
