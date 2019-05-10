@@ -13,11 +13,9 @@
 		66373BEE2285C916008D54C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66373BEC2285C916008D54C6 /* GoogleService-Info.plist */; };
 		66373BEF2285C916008D54C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66373BEC2285C916008D54C6 /* GoogleService-Info.plist */; };
 		66373BF12285CB7C008D54C6 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66373BF02285CB7C008D54C6 /* RouteViewController.swift */; };
-		66373BF22285CB7C008D54C6 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66373BF02285CB7C008D54C6 /* RouteViewController.swift */; };
-		66373BF32285CB7C008D54C6 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66373BF02285CB7C008D54C6 /* RouteViewController.swift */; };
-		66DB5D8A227FEAE6004D5AE0 /* MapFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DB5D89227FEAE6004D5AE0 /* MapFunctions.swift */; };
 		66DB5D8C227FEB11004D5AE0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DB5D8B227FEB11004D5AE0 /* MapViewController.swift */; };
 		66F9938222823D5F0039E7DE /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F9938122823D5F0039E7DE /* Location.swift */; };
+		6E5F89752285CF1000621B1D /* MapFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DB5D89227FEAE6004D5AE0 /* MapFunctions.swift */; };
 		B6C84818B1B5E52EC3348DE5 /* Pods_GeoDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD68FFA3C24B6128A2F67016 /* Pods_GeoDiary.framework */; };
 		D9187722227F6F44006F5DFA /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9187721227F6F44006F5DFA /* Media.swift */; };
 		D96587CC2274E199002654F7 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96587CB2274E199002654F7 /* CollectionView.swift */; };
@@ -166,6 +164,7 @@
 				66DB5D89227FEAE6004D5AE0 /* MapFunctions.swift */,
 				66F9938122823D5F0039E7DE /* Location.swift */,
 				66DB5D8B227FEB11004D5AE0 /* MapViewController.swift */,
+				66373BF02285CB7C008D54C6 /* RouteViewController.swift */,
 				D997214B227D353D006D0FAC /* AddNewMerchantView.swift */,
 				D9B7E1C022768D2700E28BFD /* EditMerchantView.swift */,
 				D9B7E1B622765FE900E28BFD /* SpecificCollectionView.swift */,
@@ -175,7 +174,6 @@
 				D9941DAC2269811700D01F97 /* Assets.xcassets */,
 				D9941DAE2269811700D01F97 /* LaunchScreen.storyboard */,
 				D9941DB12269811700D01F97 /* Info.plist */,
-				66373BF02285CB7C008D54C6 /* RouteViewController.swift */,
 			);
 			path = GeoDiary;
 			sourceTree = "<group>";
@@ -488,10 +486,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66DB5D8A227FEAE6004D5AE0 /* MapFunctions.swift in Sources */,
 				D9187722227F6F44006F5DFA /* Media.swift in Sources */,
 				D9B7E1BB2276772C00E28BFD /* SpecificMerchantView.swift in Sources */,
 				D96587CC2274E199002654F7 /* CollectionView.swift in Sources */,
+				6E5F89752285CF1000621B1D /* MapFunctions.swift in Sources */,
 				D9B7E1B722765FE900E28BFD /* SpecificCollectionView.swift in Sources */,
 				D9941DA82269811500D01F97 /* ViewController.swift in Sources */,
 				66F9938222823D5F0039E7DE /* Location.swift in Sources */,
@@ -510,7 +508,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66373BF22285CB7C008D54C6 /* RouteViewController.swift in Sources */,
 				D9941DBB2269811700D01F97 /* GeoDiaryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,7 +516,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66373BF32285CB7C008D54C6 /* RouteViewController.swift in Sources */,
 				D9941DC62269811700D01F97 /* GeoDiaryUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

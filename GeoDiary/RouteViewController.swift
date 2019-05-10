@@ -7,16 +7,28 @@
 //
 
 import UIKit
+import GoogleMaps
+import GooglePlaces
 
 class RouteViewController: UIViewController {
 
+    @IBOutlet weak var mapContainer: UIView!
+    var mapView: GMSMapView!
+    var mapMarker: GMSMarker!
+    var mapFunctions: MapFunctions!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.mapFunctions = MapFunctions()
 
-        // Do any additional setup after loading the view.
+        // load map view and set initial location
+        self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: 40.728952, longitude: -73.995681, zoom: 12))
     }
     
 
+    @IBAction func createRoute(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 
