@@ -17,6 +17,10 @@ class RouteViewController: UIViewController {
     var mapMarker: GMSMarker!
     var mapFunctions: MapFunctions!
     
+    var originMarker: GMSMarker!
+    var destinationMarker: GMSMarker!
+    var routePolyline: GMSPolyline!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,6 +56,27 @@ class RouteViewController: UIViewController {
                 if success {
                     print("success")
                     print(status)
+                    
+                    self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withTarget: self.mapFunctions.originCoordinate, zoom: 15))
+                    self.view.addSubview(self.mapView)
+                    
+                    self.originMarker = GMSMarker(position: self.mapFunctions.originCoordinate)
+                    self.originMarker.map = self.mapView
+                    self.originMarker.icon = GMSMarker.markerImage(with: UIColor.green)
+                    self.originMarker.title = self.mapFunctions.originAddress
+                    
+                    self.destinationMarker = GMSMarker(position: self.mapFunctions.destinationCoordinate)
+                    self.destinationMarker.map = self.mapView
+                    self.destinationMarker.icon = GMSMarker.markerImage(with: UIColor.red)
+                    self.destinationMarker.title = self.mapFunctions.destinationAddress
+                    
+                    // draw route on map
+                    let route = self.mapFunctions.overviewPolyline["points"] as! String
+                    let path = GMSPath(fromEncodedPath: route)
+                    
+                    self.routePolyline = GMSPolyline(path: path)
+                    self.routePolyline.map = self.mapView
+                    
                 } else {
                     print("fail")
                     print(status)

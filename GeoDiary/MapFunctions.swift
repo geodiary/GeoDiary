@@ -20,7 +20,7 @@ class MapFunctions: NSObject {
     
     var directionsURLBase = "https://maps.googleapis.com/maps/api/directions/json?"
     var selectedRoute: Dictionary<NSObject, AnyObject>!
-    var overviewPolyline: Dictionary<NSObject, AnyObject>!
+    var overviewPolyline: Dictionary<NSString, AnyObject>!
     var originCoordinate: CLLocationCoordinate2D!
     var destinationCoordinate: CLLocationCoordinate2D!
     var originAddress: String!
@@ -118,7 +118,7 @@ class MapFunctions: NSObject {
                             self.selectedRoute = firstRoute
                             
                             if let overviewPolyline = (firstRoute["overview_polyline"]) {
-                                self.overviewPolyline = overviewPolyline as! Dictionary<NSString, AnyObject>
+                                self.overviewPolyline = (overviewPolyline as! Dictionary<NSString, AnyObject>)
                                 
                                 let legs = firstRoute["legs"] as! Array<Dictionary<NSString, AnyObject>>
                                 let startLocationDict = legs[0]["start_location"] as! Dictionary<NSString, AnyObject>
@@ -127,8 +127,8 @@ class MapFunctions: NSObject {
                                 let endLocationDict = legs[legs.count - 1]["end_location"] as! Dictionary<NSString, AnyObject>
                                 self.destinationCoordinate = CLLocationCoordinate2DMake(endLocationDict["lat"] as! Double, endLocationDict["lng"] as! Double)
                                 
-                                self.originAddress = legs[0]["start_address"] as! String
-                                self.destinationAddress = legs[legs.count - 1]["end_address"] as! String
+                                self.originAddress = (legs[0]["start_address"] as! String)
+                                self.destinationAddress = (legs[legs.count - 1]["end_address"] as! String)
                                 
                                 completionHandler(status, true)
                             }
