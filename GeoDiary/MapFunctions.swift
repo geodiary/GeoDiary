@@ -84,22 +84,8 @@ class MapFunctions: NSObject {
         }
     }
     
-    func reverseGeocodeByCoordinates(latitude: Double!, longitude: Double!, withCompletionHandler completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
-        let location = CLLocation(latitude: latitude, longitude: longitude)
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location, completionHandler: {
-            (placemarks, error) in
-            if error != nil {
-                print("error with reverse geocoding")
-            }
-            else {
-                let placemarks = placemarks! as [CLPlacemark]
-                if placemarks.count > 0 {
-                    let placemark = placemarks[0] as CLPlacemark
-                    // continue
-                }
-            }
-        })
+    func getDirectionsBetweenTwoPoints(origin: String!, destination: String!, withCompletionHandler completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
+        
     }
     
     func editOptionalStringValue(str: String!) -> String {
