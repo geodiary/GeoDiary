@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     var mapMarker: GMSMarker!
     var mapFunctions: MapFunctions!
     var currentPlace: GMSPlace!
+    var currentPlaceID: String!
     var currentPlaceName: String!
     var currentPlaceFormattedAddress: String!
     
@@ -40,34 +41,56 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func addNewMerchant(_ sender: Any) {
-        let location = Location()
+//        let location = Location()
+//
+//        if currentPlace != nil {
+//            if self.currentPlaceFormattedAddress != "" {
+//                location.locationName = self.currentPlaceName
+//                location.locationPlaceID = self.currentPlaceID
+//                location.locationAddress = self.currentPlaceFormattedAddress
+//                location.locationLatitude = self.mapMarker.position.latitude
+//                location.locationLongitude = self.mapMarker.position.longitude
+//            } else {
+//                self.mapFunctions.geocodeAddressByPlaceID(searchedPlaceID: currentPlace.placeID, withCompletionHandler: { (status, success) -> Void in
+//                    if !success {
+//                        location.locationName = ""
+//                        location.locationPlaceID = ""
+//                        location.locationAddress = ""
+//                        location.locationLatitude = 0.0
+//                        location.locationLongitude = 0.0
+//                    } else {
+//                        location.locationName = self.currentPlaceName
+//                        location.locationPlaceID = self.currentPlaceID
+//                        location.locationAddress = self.mapFunctions.constructedAddress
+//                        location.locationLatitude = self.mapFunctions.geocodedLatitude
+//                        location.locationLongitude = self.mapFunctions.geocodedLongitude
+//                    }
+//                })
+//            }
+//        } else {
+//            location.locationName = self.currentPlaceName!
+//            location.locationPlaceID = self.currentPlaceID
+//            location.locationAddress = self.currentPlaceFormattedAddress
+//            location.locationLatitude = self.mapMarker.position.latitude
+//            location.locationLongitude = self.mapMarker.position.longitude
+//        }
+        
+        var location: Location!
         
         if currentPlace != nil {
             if self.currentPlaceFormattedAddress != "" {
-                location.locationName = self.currentPlaceName
-                location.locationAddress = self.currentPlaceFormattedAddress
-                location.locationLatitude = self.mapMarker.position.latitude
-                location.locationLongitude = self.mapMarker.position.longitude
+                location = Location(name: self.currentPlaceName, placeID: self.currentPlaceID, address: self.currentPlaceFormattedAddress, latitude: self.mapMarker.position.latitude, longitude: self.mapMarker.position.longitude)
             } else {
                 self.mapFunctions.geocodeAddressByPlaceID(searchedPlaceID: currentPlace.placeID, withCompletionHandler: { (status, success) -> Void in
                     if !success {
-                        location.locationName = ""
-                        location.locationAddress = ""
-                        location.locationLatitude = 0.0
-                        location.locationLongitude = 0.0
+                        location = Location(name: "", placeID: "", address: "", latitude: 0.0, longitude: 0.0)
                     } else {
-                        location.locationName = self.currentPlaceName
-                        location.locationAddress = self.mapFunctions.constructedAddress
-                        location.locationLatitude = self.mapFunctions.geocodedLatitude
-                        location.locationLongitude = self.mapFunctions.geocodedLongitude
+                        location = Location(name: self.currentPlaceName, placeID: self.currentPlaceID, address: self.mapFunctions.constructedAddress, latitude: self.mapFunctions.geocodedLatitude, longitude: self.mapFunctions.geocodedLongitude)
                     }
                 })
             }
         } else {
-            location.locationName = self.currentPlaceName!
-            location.locationAddress = self.currentPlaceFormattedAddress
-            location.locationLatitude = self.mapMarker.position.latitude
-            location.locationLongitude = self.mapMarker.position.longitude
+            location = Location(name: self.currentPlaceName, placeID: self.currentPlaceID, address: self.currentPlaceFormattedAddress, latitude: self.mapMarker.position.latitude, longitude: self.mapMarker.position.longitude)
         }
         
         performSegue(withIdentifier: "addNewMerchantMap", sender: location)
@@ -103,6 +126,7 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
                 // TODO: handle error
             } else {
                // update current location
+                self.currentPlaceID = place.placeID
                 self.currentPlace = place
                 self.currentPlaceName = self.mapFunctions.editOptionalStringValue(str: place.name)
                 self.currentPlaceFormattedAddress = self.mapFunctions.editOptionalStringValue(str: self.mapFunctions.geocodedFormattedAddress)

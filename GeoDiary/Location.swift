@@ -11,6 +11,7 @@ import Foundation
 class Location {
     
     var locationName = String()
+    var locationPlaceID = String()
     var locationAddress = String()
     var locationLatitude = Double()
     var locationLongitude = Double()
@@ -22,8 +23,9 @@ class Location {
         self.locationLongitude = 0.0
     }
     
-    init(name: String, address: String, latitude: Double, longitude: Double) {
+    init(name: String, placeID: String, address: String, latitude: Double, longitude: Double) {
         self.locationName = name
+        self.locationPlaceID = placeID
         self.locationAddress = address
         self.locationLatitude = latitude
         self.locationLongitude = longitude
