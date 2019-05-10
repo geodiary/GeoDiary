@@ -21,6 +21,7 @@ class MapViewController: UIViewController {
     var currentPlaceID: String!
     var currentPlaceName: String!
     var currentPlaceFormattedAddress: String!
+    @IBOutlet weak var locationInfoView: LocationInfoView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
