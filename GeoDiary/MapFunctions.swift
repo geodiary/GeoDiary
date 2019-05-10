@@ -18,6 +18,14 @@ class MapFunctions: NSObject {
     var geocodedLatitude: Double!
     var geocodedLongitude: Double!
     
+    var directionsURLBase = "https://maps.googleapis.com/maps/api/directions/json?"
+    var selectedRoute: Dictionary<NSObject, AnyObject>!
+    var overviewPolyline: Dictionary<NSObject, AnyObject>!
+    var originCoordinate: CLLocationCoordinate2D!
+    var destinationCoordinate: CLLocationCoordinate2D!
+    var originAddress: String!
+    var destinationAddress: String!
+    
     override init() {
         super.init()
     }
@@ -88,8 +96,53 @@ class MapFunctions: NSObject {
         }
     }
     
-    func getDirectionsBetweenTwoPoints(origin: String!, destination: String!, withCompletionHandler completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
+    func getDirectionsBetweenTwoPoints(originPlaceID: String!, destinationPlaceID: String!, withCompletionHandler completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
+        if let origin = originPlaceID {
+            if let destination = destinationPlaceID {
+                var directionsURLWithQueries = directionsURLBase + "origin=" + origin + "&destination=" + destination + "&key=AIzaSyC1-unUawDB5JY6ZPZU4wwc2HlZb8wMIHw"
+                let fullDirectionsURL = NSURL(string: directionsURLWithQueries)
+                
+                DispatchQueue.main.async {
+                    let directionsData = try! Data(contentsOf: fullDirectionsURL! as URL)
+                    let directionsDict = try! JSONSerialization.jsonObject(with: directionsData, options: []) as! Dictionary<NSString, Any>
+                    
+                    var error: NSError?
+                    if error != nil {
+                        completionHandler("", false)
+                    } else {
+                        let status = directionsDict["status"] as! String
+                        if status == "OK" {
+                            let routes = directionsDict["routes"] as! Array<Dictionary<NSString, AnyObject>>
+                            let firstRoute = routes[0]
+                            self.selectedRoute = firstRoute
+                            
+                            if let overviewPolyline = (firstRoute["overview_polyline"]) {
+                                self.overviewPolyline = overviewPolyline as! Dictionary<NSString, AnyObject>
+                                
+                                let legs = firstRoute["legs"] as! Array<Dictionary<NSString, AnyObject>>
+                                let startLocationDict = legs[0]["start_location"] as! Dictionary<NSString, AnyObject>
+                                self.originCoordinate = CLLocationCoordinate2DMake(startLocationDict["lat"] as! Double, startLocationDict["lng"] as! Double)
+                                
+                                let endLocationDict = legs[legs.count - 1]["end_location"] as! Dictionary<NSString, AnyObject>
+                                self.destinationCoordinate = CLLocationCoordinate2DMake(endLocationDict["lat"] as! Double, endLocationDict["lng"] as! Double)
+                                
+                                self.originAddress = legs[0]["start_address"] as! String
+                                self.destinationAddress = legs[legs.count - 1]["end_address"] as! String
+                                
+                                completionHandler(status, true)
+                            }
+                        } else {
+                            completionHandler(status, false)
+                        }
+                    }
+                }
+            } else {
+                completionHandler("Destination is nil", false)
+            }
+        } else {
+            completionHandler("Origin is nil", false)
+        }
     }
     
     func editOptionalStringValue(str: String!) -> String {
