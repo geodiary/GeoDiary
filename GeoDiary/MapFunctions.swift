@@ -65,7 +65,11 @@ class MapFunctions: NSObject {
                                     country = (type as! String)
                                 }
                             }
-                            self.constructedAddress = streetNumber + " " + route + ", " + locality + ", " + administrativeLevel1 + ", " + country
+                            self.constructedAddress = streetNumber + " "
+                            self.constructedAddress += route + ", "
+                            self.constructedAddress += locality + ", "
+                            self.constructedAddress += administrativeLevel1 + ", "
+                            self.constructedAddress += country
                             self.geocodedFormattedAddress = ""
                         }
                         
