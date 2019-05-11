@@ -37,7 +37,7 @@
                 <outlet property="addressLabel" destination="mk2-Mx-FMR" id="8JD-Wy-LZU"/>
                 <outlet property="nameLabel" destination="LS8-D3-JV3" id="rub-HT-suP"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="373.66071428571428"/>
+            <point key="canvasLocation" x="120" y="366"/>
         </view>
     </objects>
 </document>

@@ -11,7 +11,7 @@ import GoogleMaps
 import GooglePlaces
 import CoreLocation
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, GMSMapViewDelegate {
     
     @IBOutlet weak var mapContainer: UIView!
     var mapView: GMSMapView!
@@ -39,6 +39,20 @@ class MapViewController: UIViewController {
         self.mapMarker = GMSMarker(position: CLLocationCoordinate2DMake(40.728952, -73.995681))
         self.mapMarker.title = self.currentPlaceName
         self.mapMarker.map = self.mapView
+        
+        self.mapView.delegate = self
+    }
+    
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        print("in mapView()")
+        if let customInfoWindow = Bundle.main.loadNibNamed("LocationInfo", owner: self, options: nil)?.first as? LocationInfoView {
+            customInfoWindow.nameLabel.text = "test name"
+            marker.infoWindowAnchor = CGPoint(x: 0.5, y: 0.4)
+            return customInfoWindow
+        } else {
+            return nil
+        }
+        
     }
     
     @IBAction func addNewMerchant(_ sender: Any) {
