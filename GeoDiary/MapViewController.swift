@@ -51,6 +51,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
         if let customInfoWindow = Bundle.main.loadNibNamed("LocationInfo", owner: self, options: nil)?.first as? LocationInfoView {
             
+            customInfoWindow.addRoundedCornersAndShadows()
             customInfoWindow.nameLabel.text = self.currentLocation.locationName
             customInfoWindow.addressLabel.text = self.currentLocation.locationAddress
             marker.infoWindowAnchor = CGPoint(x: 0.5, y: 0.0)

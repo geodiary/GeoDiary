@@ -12,25 +12,38 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LocationInfoView" customModule="GeoDiary" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="350" height="170"/>
+            <rect key="frame" x="0.0" y="0.0" width="350" height="145"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LS8-D3-JV3">
-                    <rect key="frame" x="30" y="20" width="299" height="49"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LS8-D3-JV3">
+                    <rect key="frame" x="15" y="15" width="320" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="dcj-P2-Qlz"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mk2-Mx-FMR">
-                    <rect key="frame" x="30" y="81" width="299" height="49"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mk2-Mx-FMR">
+                    <rect key="frame" x="15" y="80" width="320" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="cjq-0G-P90"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="LS8-D3-JV3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="9qZ-u5-9mj"/>
+                <constraint firstItem="LS8-D3-JV3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="LXe-f2-fhJ"/>
+                <constraint firstItem="mk2-Mx-FMR" firstAttribute="top" secondItem="LS8-D3-JV3" secondAttribute="bottom" constant="15" id="RBW-Uu-7ZE"/>
+                <constraint firstItem="mk2-Mx-FMR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="X9q-S2-Qrv"/>
+                <constraint firstAttribute="bottom" secondItem="mk2-Mx-FMR" secondAttribute="bottom" constant="15" id="bRb-VB-aLb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="LS8-D3-JV3" secondAttribute="trailing" constant="15" id="wl4-6e-FHq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mk2-Mx-FMR" secondAttribute="trailing" constant="15" id="x4J-Sx-x9N"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
