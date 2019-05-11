@@ -17,6 +17,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     var mapView: GMSMapView!
     var mapMarker: GMSMarker!
     var mapFunctions: MapFunctions!
+    
+    var currentLocation: Location! = Location()
+    
     var currentPlace: GMSPlace!
     var currentPlaceID: String!
     var currentPlaceName: String!
@@ -29,25 +32,29 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         self.mapFunctions = MapFunctions()
         
         // Set initial location and marker on map
-        self.currentPlaceName = "Courant Institute of Mathematical Sciences - New York University"
-        self.currentPlaceFormattedAddress = "251 Mercer St, New York, NY 10012"
+        self.currentLocation.locationName = "Courant Institute of Mathematical Sciences - New York University"
+        self.currentLocation.locationAddress = "251 Mercer St, New York, NY 10012"
+        self.currentLocation.locationPlaceID = "ChIJOQ8GbZBZwokR7XMOCVaCVtM"
         
         self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: 40.728952, longitude: -73.995681, zoom: 12))
         self.mapView.isMyLocationEnabled = true
         self.view.addSubview(self.mapView)
         
         self.mapMarker = GMSMarker(position: CLLocationCoordinate2DMake(40.728952, -73.995681))
-        self.mapMarker.title = self.currentPlaceName
+        self.mapMarker.title = self.currentLocation.locationName
         self.mapMarker.map = self.mapView
         
-        self.mapView.delegate = self
+        self.mapView.delegate = self // GMSMapViewDelegate
     }
     
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        print("in mapView()")
+        
         if let customInfoWindow = Bundle.main.loadNibNamed("LocationInfo", owner: self, options: nil)?.first as? LocationInfoView {
-            customInfoWindow.nameLabel.text = "test name"
-            marker.infoWindowAnchor = CGPoint(x: 0.5, y: 0.4)
+            
+            customInfoWindow.nameLabel.text = self.currentLocation.locationName
+            customInfoWindow.addressLabel.text = self.currentLocation.locationAddress
+            marker.infoWindowAnchor = CGPoint(x: 0.5, y: 0.0)
+            
             return customInfoWindow
         } else {
             return nil
@@ -56,59 +63,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     }
     
     @IBAction func addNewMerchant(_ sender: Any) {
-//        let location = Location()
-//
-//        if currentPlace != nil {
-//            if self.currentPlaceFormattedAddress != "" {
-//                location.locationName = self.currentPlaceName
-//                location.locationPlaceID = self.currentPlaceID
-//                location.locationAddress = self.currentPlaceFormattedAddress
-//                location.locationLatitude = self.mapMarker.position.latitude
-//                location.locationLongitude = self.mapMarker.position.longitude
-//            } else {
-//                self.mapFunctions.geocodeAddressByPlaceID(searchedPlaceID: currentPlace.placeID, withCompletionHandler: { (status, success) -> Void in
-//                    if !success {
-//                        location.locationName = ""
-//                        location.locationPlaceID = ""
-//                        location.locationAddress = ""
-//                        location.locationLatitude = 0.0
-//                        location.locationLongitude = 0.0
-//                    } else {
-//                        location.locationName = self.currentPlaceName
-//                        location.locationPlaceID = self.currentPlaceID
-//                        location.locationAddress = self.mapFunctions.constructedAddress
-//                        location.locationLatitude = self.mapFunctions.geocodedLatitude
-//                        location.locationLongitude = self.mapFunctions.geocodedLongitude
-//                    }
-//                })
-//            }
-//        } else {
-//            location.locationName = self.currentPlaceName!
-//            location.locationPlaceID = self.currentPlaceID
-//            location.locationAddress = self.currentPlaceFormattedAddress
-//            location.locationLatitude = self.mapMarker.position.latitude
-//            location.locationLongitude = self.mapMarker.position.longitude
-//        }
-        
-        var location: Location!
-        
-        if currentPlace != nil {
-            if self.currentPlaceFormattedAddress != "" {
-                location = Location(name: self.currentPlaceName, placeID: self.currentPlaceID, address: self.currentPlaceFormattedAddress, latitude: self.mapMarker.position.latitude, longitude: self.mapMarker.position.longitude)
-            } else {
-                self.mapFunctions.geocodeAddressByPlaceID(searchedPlaceID: currentPlace.placeID, withCompletionHandler: { (status, success) -> Void in
-                    if !success {
-                        location = Location(name: "", placeID: "", address: "", latitude: 0.0, longitude: 0.0)
-                    } else {
-                        location = Location(name: self.currentPlaceName, placeID: self.currentPlaceID, address: self.mapFunctions.constructedAddress, latitude: self.mapFunctions.geocodedLatitude, longitude: self.mapFunctions.geocodedLongitude)
-                    }
-                })
-            }
-        } else {
-            location = Location(name: self.currentPlaceName, placeID: self.currentPlaceID, address: self.currentPlaceFormattedAddress, latitude: self.mapMarker.position.latitude, longitude: self.mapMarker.position.longitude)
-        }
-        
-        performSegue(withIdentifier: "addNewMerchantMap", sender: location)
+        performSegue(withIdentifier: "addNewMerchantMap", sender: self.currentLocation)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -140,7 +95,19 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
             if !success {
                 // TODO: handle error
             } else {
-               // update current location
+                // update currentLocation values
+                self.currentLocation.locationName = self.mapFunctions.editOptionalStringValue(str: place.name)
+                if self.mapFunctions.constructedAddress == "" {
+                    self.currentLocation.locationAddress = self.mapFunctions.geocodedFormattedAddress
+                } else {
+                    self.currentLocation.locationAddress = self.mapFunctions.constructedAddress
+                }
+                self.currentLocation.locationPlaceID = place.placeID as! String
+                self.currentLocation.locationLatitude = self.mapFunctions.geocodedLatitude
+                self.currentLocation.locationLongitude = self.mapFunctions.geocodedLongitude
+                
+                
+                // update current location
                 self.currentPlaceID = place.placeID
                 self.currentPlace = place
                 self.currentPlaceName = self.mapFunctions.editOptionalStringValue(str: place.name)
