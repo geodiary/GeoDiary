@@ -11,7 +11,7 @@ import GoogleMaps
 import GooglePlaces
 import CoreLocation
 
-class MapViewController: UIViewController, GMSMapViewDelegate {
+class MapViewController: UIViewController {
     
     @IBOutlet weak var mapContainer: UIView!
     var mapView: GMSMapView!
@@ -37,31 +37,37 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         self.currentLocation.locationPlaceID = "ChIJOQ8GbZBZwokR7XMOCVaCVtM"
         
         self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: 40.728952, longitude: -73.995681, zoom: 12))
-        self.mapView.isMyLocationEnabled = true
+//        self.mapView.isMyLocationEnabled = true
         self.view.addSubview(self.mapView)
+        
+        self.mapView.delegate = self // GMSMapViewDelegate
         
         self.mapMarker = GMSMarker(position: CLLocationCoordinate2DMake(40.728952, -73.995681))
         self.mapMarker.title = self.currentLocation.locationName
         self.mapMarker.map = self.mapView
-        
-        self.mapView.delegate = self // GMSMapViewDelegate
     }
     
-    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        
-        if let customInfoWindow = Bundle.main.loadNibNamed("LocationInfo", owner: self, options: nil)?.first as? LocationInfoView {
-            
-            customInfoWindow.addRoundedCornersAndShadows()
-            customInfoWindow.nameLabel.text = self.currentLocation.locationName
-            customInfoWindow.addressLabel.text = self.currentLocation.locationAddress
-            marker.infoWindowAnchor = CGPoint(x: 0.5, y: 0.0)
-            
-            return customInfoWindow
-        } else {
-            return nil
-        }
-        
-    }
+//    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+//        print("in mapView()")
+//        print("\(String(describing: self.currentLocation.locationName))")
+//        print("\(String(describing: self.currentLocation.locationAddress))")
+//        if let customInfoWindow = Bundle.main.loadNibNamed("LocationInfo", owner: self, options: nil)?.first as? LocationInfoView {
+//
+//            customInfoWindow.addRoundedCornersAndShadows()
+//            customInfoWindow.nameLabel.text = self.currentLocation.locationName
+//            customInfoWindow.addressLabel.text = self.currentLocation.locationAddress
+//            marker.infoWindowAnchor = CGPoint(x: 0.5, y: 0.0)
+//
+//            return customInfoWindow
+//        } else {
+//            return nil
+//        }
+//    }
+//
+//    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+//        mapView.selectedMarker = marker
+//        return true
+//    }
     
     @IBAction func addNewMerchant(_ sender: Any) {
         performSegue(withIdentifier: "addNewMerchantMap", sender: self.currentLocation)
@@ -93,13 +99,14 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
 //        print("place: \(String(describing: place))")
         
-        currentLocation.locationName = place.name! as String
-        currentLocation.locationPlaceID = place.placeID! as String
-        currentLocation.locationAddress = place.formattedAddress! as String
-        currentLocation.locationLatitude = place.coordinate.latitude
-        currentLocation.locationLongitude = place.coordinate.longitude
+        self.currentLocation.locationName = place.name! as String
+        self.currentLocation.locationPlaceID = place.placeID! as String
+        self.currentLocation.locationAddress = place.formattedAddress! as String
+        self.currentLocation.locationLatitude = place.coordinate.latitude
+        self.currentLocation.locationLongitude = place.coordinate.longitude
         
-        self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: place.coordinate.latitude, longitude: place.coordinate.longitude, zoom: 15))
+//        self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: place.coordinate.latitude, longitude: place.coordinate.longitude, zoom: 15))
+        self.mapView.camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude, longitude: place.coordinate.longitude, zoom: 15)
         self.view.addSubview(self.mapView)
         
         self.mapMarker = GMSMarker(position: place.coordinate)
@@ -128,4 +135,42 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
+}
+
+extension MapViewController: GMSMapViewDelegate {
+//    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+//        if let locationInfoWindow = marker.iconView as? LocationInfoView {
+//            
+//            return true
+//        }
+//        return false
+//    }
+    
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        if let customInfoWindow = Bundle.main.loadNibNamed("LocationInfo", owner: self, options: nil)?.first as? LocationInfoView {
+
+            customInfoWindow.addRoundedCornersAndShadows()
+            customInfoWindow.nameLabel.text = self.currentLocation.locationName
+            customInfoWindow.addressLabel.text = self.currentLocation.locationAddress
+            marker.infoWindowAnchor = CGPoint(x: 0.5, y: 0.0)
+
+            return customInfoWindow
+        } else {
+            return nil
+        }
+    }
+    
+    func mapView(_ mapView: GMSMapView, markerInfoContents marker: GMSMarker) -> UIView? {
+        if let customInfoWindow = Bundle.main.loadNibNamed("LocationInfo", owner: self, options: nil)?.first as? LocationInfoView {
+            
+            customInfoWindow.addRoundedCornersAndShadows()
+            customInfoWindow.nameLabel.text = self.currentLocation.locationName
+            customInfoWindow.addressLabel.text = self.currentLocation.locationAddress
+            marker.infoWindowAnchor = CGPoint(x: 0.5, y: 0.0)
+            
+            return customInfoWindow
+        } else {
+            return nil
+        }
+    }
 }

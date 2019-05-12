@@ -75,7 +75,19 @@
                     <view key="view" contentMode="scaleToFill" id="myd-Vh-DYW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jmi-oX-rMj">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jmi-oX-rMj" firstAttribute="leading" secondItem="fgf-ta-QdU" secondAttribute="leading" id="SH4-E4-edW"/>
+                            <constraint firstItem="jmi-oX-rMj" firstAttribute="top" secondItem="fgf-ta-QdU" secondAttribute="top" id="kcB-3Q-yPU"/>
+                            <constraint firstItem="fgf-ta-QdU" firstAttribute="trailing" secondItem="jmi-oX-rMj" secondAttribute="trailing" id="wph-4Z-Mfm"/>
+                            <constraint firstItem="fgf-ta-QdU" firstAttribute="bottom" secondItem="jmi-oX-rMj" secondAttribute="bottom" id="yuJ-4x-vDN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fgf-ta-QdU"/>
                     </view>
                     <navigationItem key="navigationItem" title="Route Planner" id="qt4-11-biF">
@@ -85,6 +97,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapContainer" destination="jmi-oX-rMj" id="aCB-01-y45"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pob-fi-g4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

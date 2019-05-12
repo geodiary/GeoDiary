@@ -16,7 +16,7 @@ class RouteViewController: UIViewController {
     var mapView: GMSMapView!
     var mapMarker: GMSMarker!
     var mapFunctions: MapFunctions!
-    
+
     var originMarker: GMSMarker!
     var destinationMarker: GMSMarker!
     var routePolyline: GMSPolyline!
