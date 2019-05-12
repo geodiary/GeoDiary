@@ -203,6 +203,9 @@ class SpecificCollectionView: UIViewController, UITableViewDelegate, UITableView
                         merchant.comment = document.get("comment") as! String
                         merchant.reminder = document.get("reminder") as! String
                         merchant.address = document.get("address") as! String
+                        if(document.get("placeID") != nil) {
+                            merchant.placeID = document.get("placeID") as! String
+                        }
                         self.merchants.append(merchant)
                         
                         self.merchantsName.append(merchant.name)

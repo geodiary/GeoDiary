@@ -111,13 +111,15 @@ class AddNewMerchantView: UIViewController, UIPickerViewDataSource, UIPickerView
             
             
             // Add a new document with a generated id.
+            if(location != nil) {
             var ref: DocumentReference? = nil
             ref = db.collection(path).addDocument(data:[
                 "name":addName.text,
                 "description": addDescription.text,
                 "reminder": addReminder.text,
                 "comment": addComment.text,
-                "address": address.text
+                "address": address.text,
+                "placeID": location.locationPlaceID
             ])
             { err in
                 if let err = err {
@@ -125,6 +127,28 @@ class AddNewMerchantView: UIViewController, UIPickerViewDataSource, UIPickerView
                 } else {
                     print("Document added with ID: \(ref!.documentID)")
                 }
+                }
+                
+            }
+            
+            else {
+                var ref: DocumentReference? = nil
+                ref = db.collection(path).addDocument(data:[
+                    "name":addName.text,
+                    "description": addDescription.text,
+                    "reminder": addReminder.text,
+                    "comment": addComment.text,
+                    "address": address.text,
+                    "placeID": ""
+                    ])
+                { err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                    } else {
+                        print("Document added with ID: \(ref!.documentID)")
+                    }
+                }
+                
             }
             
             //self.dismiss(animated: true, completion: nil)

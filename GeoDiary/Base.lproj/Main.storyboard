@@ -75,19 +75,7 @@
                     <view key="view" contentMode="scaleToFill" id="myd-Vh-DYW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ulF-0r-kFX">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="fgf-ta-QdU" firstAttribute="bottom" secondItem="ulF-0r-kFX" secondAttribute="bottom" id="Oa4-pR-kZz"/>
-                            <constraint firstItem="fgf-ta-QdU" firstAttribute="trailing" secondItem="ulF-0r-kFX" secondAttribute="trailing" id="jG8-MN-yUs"/>
-                            <constraint firstItem="ulF-0r-kFX" firstAttribute="leading" secondItem="fgf-ta-QdU" secondAttribute="leading" id="wcD-tc-YXB"/>
-                            <constraint firstItem="ulF-0r-kFX" firstAttribute="top" secondItem="fgf-ta-QdU" secondAttribute="top" id="xhe-0M-Eku"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fgf-ta-QdU"/>
                     </view>
                     <navigationItem key="navigationItem" title="Route Planner" id="qt4-11-biF">
@@ -97,9 +85,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="mapContainer" destination="ulF-0r-kFX" id="wOv-AO-jXh"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pob-fi-g4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -115,9 +100,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Yg9-ms-eX6" kind="relationship" relationship="viewControllers" id="VTO-sb-iKS"/>
-                        <segue destination="Kst-qW-zAO" kind="relationship" relationship="viewControllers" id="M29-fK-7ss"/>
                         <segue destination="lvQ-VA-WXn" kind="relationship" relationship="viewControllers" id="j03-eu-mz3"/>
+                        <segue destination="Kst-qW-zAO" kind="relationship" relationship="viewControllers" id="M29-fK-7ss"/>
+                        <segue destination="Yg9-ms-eX6" kind="relationship" relationship="viewControllers" id="VTO-sb-iKS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8MI-KK-VYZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -689,6 +674,14 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Trl-7c-e5o">
+                                <rect key="frame" x="23" y="108" width="40" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Share"/>
+                                <connections>
+                                    <action selector="share:" destination="blF-ga-HBe" eventType="touchUpInside" id="Mvw-dL-HiU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="j2L-iY-xkh"/>
@@ -916,11 +909,11 @@
             </objects>
             <point key="canvasLocation" x="3682.608695652174" y="26.116071428571427"/>
         </scene>
-        <!--Item-->
+        <!--My Collections-->
         <scene sceneID="Dyq-wu-6Jv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lvQ-VA-WXn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ptX-ag-Koa"/>
+                    <tabBarItem key="tabBarItem" title="My Collections" id="ptX-ag-Koa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IXa-n3-6kh">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

@@ -173,6 +173,15 @@ class SpecificMerchantView: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    @IBAction func share(_ sender: Any) {
+        var sharedInfo = [String]()
+        sharedInfo.append(merchantInfo.name)
+        sharedInfo.append(",")
+        sharedInfo.append(merchantInfo.address)
+        let activityController = UIActivityViewController(activityItems: sharedInfo, applicationActivities: nil)
+        present(activityController, animated: true, completion: nil)
+    }
+    
     @IBAction func addPhotos(_ sender: Any) {
         performSegue(withIdentifier: "addPhoto", sender: merchantInfo)
     }
