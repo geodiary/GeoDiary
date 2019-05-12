@@ -149,7 +149,6 @@ class MapFunctions: NSObject {
         var strEdited = str.replacingOccurrences(of: "Optional(", with: "")
         strEdited = strEdited.replacingOccurrences(of: ")", with: "")
         strEdited = strEdited.replacingOccurrences(of: "\"", with: "")
-        print(strEdited)
         return strEdited
     }
 }

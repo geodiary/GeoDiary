@@ -81,8 +81,7 @@ extension MapViewController: UISearchBarDelegate {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         
-        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
-            UInt(GMSPlaceField.placeID.rawValue))!
+        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.formattedAddress.rawValue) | UInt(GMSPlaceField.coordinate.rawValue) | UInt(GMSPlaceField.phoneNumber.rawValue))!
         autocompleteController.placeFields = fields
         
         present(autocompleteController, animated: true, completion: nil)
@@ -92,36 +91,20 @@ extension MapViewController: UISearchBarDelegate {
 extension MapViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        self.mapFunctions.geocodeAddressByPlaceID(searchedPlaceID: place.placeID, withCompletionHandler: { (status, success) -> Void in
-            if !success {
-                // TODO: handle error
-            } else {
-                // update currentLocation values
-                self.currentLocation.locationName = self.mapFunctions.editOptionalStringValue(str: place.name)
-                if self.mapFunctions.constructedAddress == "" {
-                    self.currentLocation.locationAddress = self.mapFunctions.geocodedFormattedAddress
-                } else {
-                    self.currentLocation.locationAddress = self.mapFunctions.constructedAddress
-                }
-                self.currentLocation.locationPlaceID = place.placeID as! String
-                self.currentLocation.locationLatitude = self.mapFunctions.geocodedLatitude
-                self.currentLocation.locationLongitude = self.mapFunctions.geocodedLongitude
-                
-                
-                // update current location
-                self.currentPlaceID = place.placeID
-                self.currentPlace = place
-                self.currentPlaceName = self.mapFunctions.editOptionalStringValue(str: place.name)
-                self.currentPlaceFormattedAddress = self.mapFunctions.editOptionalStringValue(str: self.mapFunctions.geocodedFormattedAddress)
-                
-                self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: self.mapFunctions.geocodedLatitude, longitude: self.mapFunctions.geocodedLongitude, zoom: 15))
-                self.view.addSubview(self.mapView)
-                
-                self.mapMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.mapFunctions.geocodedLatitude, self.mapFunctions.geocodedLongitude))
-                self.mapMarker.title = place.name
-                self.mapMarker.map = self.mapView
-            }
-        })
+//        print("place: \(String(describing: place))")
+        
+        currentLocation.locationName = place.name! as String
+        currentLocation.locationPlaceID = place.placeID! as String
+        currentLocation.locationAddress = place.formattedAddress! as String
+        currentLocation.locationLatitude = place.coordinate.latitude
+        currentLocation.locationLongitude = place.coordinate.longitude
+        
+        self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: place.coordinate.latitude, longitude: place.coordinate.longitude, zoom: 15))
+        self.view.addSubview(self.mapView)
+        
+        self.mapMarker = GMSMarker(position: place.coordinate)
+        self.mapMarker.title = place.name
+        self.mapMarker.map = self.mapView
         
         viewController.dismiss(animated: true, completion: nil)
     }
