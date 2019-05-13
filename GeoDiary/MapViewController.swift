@@ -15,15 +15,17 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapContainer: UIView!
     var mapView: GMSMapView!
-    var mapMarker: GMSMarker!
+    var mapMarker: GMSMarker! = GMSMarker()
     var mapFunctions: MapFunctions!
     
-    var currentLocation: Location! = Location()
+    var locationManager: CLLocationManager! = CLLocationManager()
     
+    var currentLocation: Location! = Location()
     var currentPlace: GMSPlace!
     var currentPlaceID: String!
     var currentPlaceName: String!
     var currentPlaceFormattedAddress: String!
+    
     @IBOutlet weak var locationInfoView: LocationInfoView!
     
     override func viewDidLoad() {
@@ -31,43 +33,17 @@ class MapViewController: UIViewController {
         
         self.mapFunctions = MapFunctions()
         
-        // Set initial location and marker on map
-        self.currentLocation.locationName = "Courant Institute of Mathematical Sciences - New York University"
-        self.currentLocation.locationAddress = "251 Mercer St, New York, NY 10012"
-        self.currentLocation.locationPlaceID = "ChIJOQ8GbZBZwokR7XMOCVaCVtM"
-        
-        self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: 40.728952, longitude: -73.995681, zoom: 12))
-//        self.mapView.isMyLocationEnabled = true
+        self.mapView = GMSMapView(frame: self.mapContainer.frame)
         self.view.addSubview(self.mapView)
         
         self.mapView.delegate = self // GMSMapViewDelegate
         
-        self.mapMarker = GMSMarker(position: CLLocationCoordinate2DMake(40.728952, -73.995681))
-        self.mapMarker.title = self.currentLocation.locationName
-        self.mapMarker.map = self.mapView
+        self.mapView.isMyLocationEnabled = true
+        self.locationManager.delegate = self
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+        self.locationManager.startMonitoringSignificantLocationChanges()
     }
-    
-//    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-//        print("in mapView()")
-//        print("\(String(describing: self.currentLocation.locationName))")
-//        print("\(String(describing: self.currentLocation.locationAddress))")
-//        if let customInfoWindow = Bundle.main.loadNibNamed("LocationInfo", owner: self, options: nil)?.first as? LocationInfoView {
-//
-//            customInfoWindow.addRoundedCornersAndShadows()
-//            customInfoWindow.nameLabel.text = self.currentLocation.locationName
-//            customInfoWindow.addressLabel.text = self.currentLocation.locationAddress
-//            marker.infoWindowAnchor = CGPoint(x: 0.5, y: 0.0)
-//
-//            return customInfoWindow
-//        } else {
-//            return nil
-//        }
-//    }
-//
-//    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-//        mapView.selectedMarker = marker
-//        return true
-//    }
     
     @IBAction func addNewMerchant(_ sender: Any) {
         performSegue(withIdentifier: "addNewMerchantMap", sender: self.currentLocation)
@@ -90,6 +66,7 @@ extension MapViewController: UISearchBarDelegate {
         let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.formattedAddress.rawValue) | UInt(GMSPlaceField.coordinate.rawValue) | UInt(GMSPlaceField.phoneNumber.rawValue))!
         autocompleteController.placeFields = fields
         
+        self.locationManager.startUpdatingLocation()
         present(autocompleteController, animated: true, completion: nil)
     }
 }
@@ -97,7 +74,6 @@ extension MapViewController: UISearchBarDelegate {
 extension MapViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-//        print("place: \(String(describing: place))")
         
         self.currentLocation.locationName = place.name! as String
         self.currentLocation.locationPlaceID = place.placeID! as String
@@ -105,7 +81,6 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
         self.currentLocation.locationLatitude = place.coordinate.latitude
         self.currentLocation.locationLongitude = place.coordinate.longitude
         
-//        self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: place.coordinate.latitude, longitude: place.coordinate.longitude, zoom: 15))
         self.mapView.camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude, longitude: place.coordinate.longitude, zoom: 15)
         self.view.addSubview(self.mapView)
         
@@ -138,13 +113,6 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
 }
 
 extension MapViewController: GMSMapViewDelegate {
-//    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-//        if let locationInfoWindow = marker.iconView as? LocationInfoView {
-//            
-//            return true
-//        }
-//        return false
-//    }
     
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         if let customInfoWindow = Bundle.main.loadNibNamed("LocationInfo", owner: self, options: nil)?.first as? LocationInfoView {
@@ -172,5 +140,23 @@ extension MapViewController: GMSMapViewDelegate {
         } else {
             return nil
         }
+    }
+}
+
+extension MapViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error while getting location \(error)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let location = locations.last
+        let latitude = (location?.coordinate.latitude)!
+        let longitude = (location?.coordinate.longitude)!
+        
+        self.mapView.animate(to: GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 15))
+        
+        self.locationManager.stopUpdatingLocation()
     }
 }
