@@ -11,82 +11,31 @@ import GoogleMaps
 import GooglePlaces
 
 class PlannerViewController: UIViewController {
-
-    var mapView: GMSMapView!
-    var mapMarker: GMSMarker!
-    var mapFunctions: MapFunctions!
-
-    var originMarker: GMSMarker!
-    var destinationMarker: GMSMarker!
-    var routePolyline: GMSPolyline!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.mapFunctions = MapFunctions()
+        
     }
-    
-
-    @IBAction func createRoute(_ sender: Any) {
+        /*
+        self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withTarget: self.mapFunctions.originCoordinate, zoom: 15))
+        self.view.addSubview(self.mapView)
         
-        let createRouteAlert = UIAlertController(title: "Create Route", message: "See route between two locations", preferredStyle: UIAlertController.Style.alert)
-        createRouteAlert.addTextField(configurationHandler: {(textField) -> Void in
-            textField.placeholder = "Origin:"
-        })
-        createRouteAlert.addTextField(configurationHandler: {(textField) -> Void in
-            textField.placeholder = "Destination:"
-        })
+        self.originMarker = GMSMarker(position: self.mapFunctions.originCoordinate)
+        self.originMarker.map = self.mapView
+        self.originMarker.icon = GMSMarker.markerImage(with: UIColor.green)
+        self.originMarker.title = self.mapFunctions.originAddress
         
-        let createRouteAction = UIAlertAction(title: "Create Route", style: UIAlertAction.Style.default, handler: {(alertAction) -> Void in
-//            let origin = (createRouteAlert.textFields![0] as UITextField).text as! String
-//            let destination = (createRouteAlert.textFields![0] as UITextField).text as! String
-            
-            let originPlaceID  = "ChIJHbNDrN9hwokRSTvYiaYovd8"
-            let destinationPlaceID = "ChIJr4JMceFhwokRcx2Oie6Ue4w"
-            self.mapFunctions.getDirectionsBetweenTwoPoints(originPlaceID: originPlaceID, destinationPlaceID: destinationPlaceID, withCompletionHandler: {(status, success) -> Void in
-                if success {
-                    print("success")
-                    print(status)
-                    
-                    /*
-                    self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withTarget: self.mapFunctions.originCoordinate, zoom: 15))
-                    self.view.addSubview(self.mapView)
-                    
-                    self.originMarker = GMSMarker(position: self.mapFunctions.originCoordinate)
-                    self.originMarker.map = self.mapView
-                    self.originMarker.icon = GMSMarker.markerImage(with: UIColor.green)
-                    self.originMarker.title = self.mapFunctions.originAddress
-                    
-                    self.destinationMarker = GMSMarker(position: self.mapFunctions.destinationCoordinate)
-                    self.destinationMarker.map = self.mapView
-                    self.destinationMarker.icon = GMSMarker.markerImage(with: UIColor.red)
-                    self.destinationMarker.title = self.mapFunctions.destinationAddress
-                    
-                    // draw route on map
-                    let route = self.mapFunctions.overviewPolyline["points"] as! String
-                    let path = GMSPath(fromEncodedPath: route)
-                    
-                    self.routePolyline = GMSPolyline(path: path)
-                    self.routePolyline.map = self.mapView
-                    */
-                } else {
-                    print("fail")
-                    print(status)
-                }
-            })
-        })
+        self.destinationMarker = GMSMarker(position: self.mapFunctions.destinationCoordinate)
+        self.destinationMarker.map = self.mapView
+        self.destinationMarker.icon = GMSMarker.markerImage(with: UIColor.red)
+        self.destinationMarker.title = self.mapFunctions.destinationAddress
         
-        let testAction = UIAlertAction(title: "Test", style: UIAlertAction.Style.default, handler: {(alertAction) -> Void in
-            self.mapFunctions.routePlanner()
-        })
+        // draw route on map
+        let route = self.mapFunctions.overviewPolyline["points"] as! String
+        let path = GMSPath(fromEncodedPath: route)
         
-        let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: { (alertAction) -> Void in
-        })
-        
-        createRouteAlert.addAction(createRouteAction)
-        createRouteAlert.addAction(testAction)
-        createRouteAlert.addAction(closeAction)
-        
-        present(createRouteAlert, animated: true, completion: nil)
-    }
+        self.routePolyline = GMSPolyline(path: path)
+        self.routePolyline.map = self.mapView
+        */
 }

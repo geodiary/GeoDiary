@@ -68,37 +68,6 @@
             </objects>
             <point key="canvasLocation" x="-203" y="914"/>
         </scene>
-        <!--Route Planner-->
-        <scene sceneID="KYL-vl-tvi">
-            <objects>
-                <viewController title="Route Planner" id="JEE-cw-ycr" customClass="PlannerViewController" customModule="GeoDiary" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="DJU-wd-UeZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose up to 5 locations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRz-De-tGY">
-                                <rect key="frame" x="43" y="129" width="328" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="29"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="gI7-dP-OQK"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Route Planner" id="2ua-ey-ErP">
-                        <barButtonItem key="rightBarButtonItem" title="Plan" id="wak-d0-blJ">
-                            <connections>
-                                <segue destination="yJK-Nc-aPR" kind="presentation" id="VyN-Bg-z5X"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vMK-hT-xvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="534.78260869565224" y="-877.23214285714278"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Iwh-jN-2h4">
             <objects>
@@ -968,27 +937,37 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="JEE-cw-ycr" kind="relationship" relationship="rootViewController" id="4r7-b8-thG"/>
+                        <segue destination="F7h-QC-sHs" kind="relationship" relationship="rootViewController" id="x9L-U9-Z1D"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b9p-P6-WGY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-342.02898550724638" y="-877.23214285714278"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="PP6-mh-73l">
+        <!--Planner View Controller-->
+        <scene sceneID="SxK-J4-Sox">
             <objects>
-                <viewController id="yJK-Nc-aPR" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="evS-kx-rSw">
+                <viewController id="F7h-QC-sHs" customClass="PlannerViewController" customModule="GeoDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jwo-Dt-0uf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ag-I0-VuG">
+                                <rect key="frame" x="146" y="370" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="MOn-yH-eah"/>
+                        <viewLayoutGuide key="safeArea" id="V1y-rB-n0G"/>
                     </view>
+                    <navigationItem key="navigationItem" id="aQ7-g5-eXv"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8F4-2e-GzI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fgT-5F-Jha" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1301" y="-877"/>
+            <point key="canvasLocation" x="399" y="-877"/>
         </scene>
     </scenes>
     <resources>
