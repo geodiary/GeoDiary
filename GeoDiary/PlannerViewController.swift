@@ -10,9 +10,8 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-class RouteViewController: UIViewController {
+class PlannerViewController: UIViewController {
 
-    @IBOutlet weak var mapContainer: UIView!
     var mapView: GMSMapView!
     var mapMarker: GMSMarker!
     var mapFunctions: MapFunctions!
@@ -25,14 +24,6 @@ class RouteViewController: UIViewController {
         super.viewDidLoad()
         
         self.mapFunctions = MapFunctions()
-
-        // load map view and set initial location
-        self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withLatitude: 40.728952, longitude: -73.995681, zoom: 12))
-        self.view.addSubview(self.mapView)
-        
-        self.mapMarker = GMSMarker(position: CLLocationCoordinate2DMake(40.728952, -73.995681))
-        self.mapMarker.title = "Courant Institute of Mathematical Sciences - New York University"
-        self.mapMarker.map = self.mapView
     }
     
 
@@ -57,6 +48,7 @@ class RouteViewController: UIViewController {
                     print("success")
                     print(status)
                     
+                    /*
                     self.mapView = GMSMapView.map(withFrame: self.mapContainer.frame, camera: GMSCameraPosition.camera(withTarget: self.mapFunctions.originCoordinate, zoom: 15))
                     self.view.addSubview(self.mapView)
                     
@@ -76,7 +68,7 @@ class RouteViewController: UIViewController {
                     
                     self.routePolyline = GMSPolyline(path: path)
                     self.routePolyline.map = self.mapView
-                    
+                    */
                 } else {
                     print("fail")
                     print(status)
@@ -84,22 +76,17 @@ class RouteViewController: UIViewController {
             })
         })
         
+        let testAction = UIAlertAction(title: "Test", style: UIAlertAction.Style.default, handler: {(alertAction) -> Void in
+            self.mapFunctions.routePlanner()
+        })
+        
         let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: { (alertAction) -> Void in
         })
         
         createRouteAlert.addAction(createRouteAction)
+        createRouteAlert.addAction(testAction)
         createRouteAlert.addAction(closeAction)
         
         present(createRouteAlert, animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

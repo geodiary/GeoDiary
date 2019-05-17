@@ -74,7 +74,7 @@ extension MapViewController: UISearchBarDelegate {
 extension MapViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        
+        print("place id \(String:(place.placeID))")
         self.currentLocation.locationName = place.name! as String
         self.currentLocation.locationPlaceID = place.placeID! as String
         self.currentLocation.locationAddress = place.formattedAddress! as String

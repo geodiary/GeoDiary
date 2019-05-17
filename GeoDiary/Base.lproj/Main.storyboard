@@ -69,41 +69,35 @@
             <point key="canvasLocation" x="-203" y="914"/>
         </scene>
         <!--Route Planner-->
-        <scene sceneID="Jwo-LZ-6gh">
+        <scene sceneID="KYL-vl-tvi">
             <objects>
-                <viewController id="sj3-hN-yWE" customClass="RouteViewController" customModule="GeoDiary" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="myd-Vh-DYW">
+                <viewController title="Route Planner" id="JEE-cw-ycr" customClass="PlannerViewController" customModule="GeoDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DJU-wd-UeZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jmi-oX-rMj">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose up to 5 locations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRz-De-tGY">
+                                <rect key="frame" x="43" y="129" width="328" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="jmi-oX-rMj" firstAttribute="leading" secondItem="fgf-ta-QdU" secondAttribute="leading" id="SH4-E4-edW"/>
-                            <constraint firstItem="jmi-oX-rMj" firstAttribute="top" secondItem="fgf-ta-QdU" secondAttribute="top" id="kcB-3Q-yPU"/>
-                            <constraint firstItem="fgf-ta-QdU" firstAttribute="trailing" secondItem="jmi-oX-rMj" secondAttribute="trailing" id="wph-4Z-Mfm"/>
-                            <constraint firstItem="fgf-ta-QdU" firstAttribute="bottom" secondItem="jmi-oX-rMj" secondAttribute="bottom" id="yuJ-4x-vDN"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="fgf-ta-QdU"/>
+                        <viewLayoutGuide key="safeArea" id="gI7-dP-OQK"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Route Planner" id="qt4-11-biF">
-                        <barButtonItem key="rightBarButtonItem" title="Route" id="K6E-zf-awL">
+                    <navigationItem key="navigationItem" title="Route Planner" id="2ua-ey-ErP">
+                        <barButtonItem key="rightBarButtonItem" title="Plan" id="wak-d0-blJ">
                             <connections>
-                                <action selector="createRoute:" destination="sj3-hN-yWE" id="VL2-OK-d0I"/>
+                                <segue destination="yJK-Nc-aPR" kind="presentation" id="VyN-Bg-z5X"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="mapContainer" destination="jmi-oX-rMj" id="aCB-01-y45"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pob-fi-g4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vMK-hT-xvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="568.1159420289855" y="-877.23214285714278"/>
+            <point key="canvasLocation" x="534.78260869565224" y="-877.23214285714278"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Iwh-jN-2h4">
@@ -974,12 +968,27 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="sj3-hN-yWE" kind="relationship" relationship="rootViewController" id="idv-t2-HyN"/>
+                        <segue destination="JEE-cw-ycr" kind="relationship" relationship="rootViewController" id="4r7-b8-thG"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b9p-P6-WGY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-342.02898550724638" y="-877.23214285714278"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="PP6-mh-73l">
+            <objects>
+                <viewController id="yJK-Nc-aPR" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="evS-kx-rSw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="MOn-yH-eah"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8F4-2e-GzI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1301" y="-877"/>
         </scene>
     </scenes>
     <resources>
@@ -987,6 +996,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="j03-eu-mz3"/>
-        <segue reference="D6P-oK-5pb"/>
+        <segue reference="X0H-dk-9Ik"/>
     </inferredMetricsTieBreakers>
 </document>
