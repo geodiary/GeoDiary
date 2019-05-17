@@ -26,10 +26,10 @@ class MapFunctions: NSObject {
     var originAddress: String!
     var destinationAddress: String!
     
+    var routes = [Route]()
+    
     var totalDistanceInMeters: UInt = 0
     var totalDurationInSeconds: UInt = 0
-    
-    var routePlannerInfo = [Dictionary<NSString, AnyObject>]()
     
     override init() {
         super.init()
@@ -117,8 +117,6 @@ class MapFunctions: NSObject {
                         completionHandler("", false)
                     } else {
                         
-                        var returnVal = [NSString: AnyObject]()
-                        
                         let status = directionsDict["status"] as! String
                         if status == "OK" {
                             let routes = directionsDict["routes"] as! Array<Dictionary<NSString, AnyObject>>
@@ -127,22 +125,19 @@ class MapFunctions: NSObject {
                             
                             if let overviewPolyline = (firstRoute["overview_polyline"]) {
                                 self.overviewPolyline = (overviewPolyline as! Dictionary<NSString, AnyObject>)
-                                returnVal["overviewPolyline"] = self.overviewPolyline as AnyObject
                                 
                                 let legs = firstRoute["legs"] as! Array<Dictionary<NSString, AnyObject>>
                                 let startLocationDict = legs[0]["start_location"] as! Dictionary<NSString, AnyObject>
                                 self.originCoordinate = CLLocationCoordinate2DMake(startLocationDict["lat"] as! Double, startLocationDict["lng"] as! Double)
-                                returnVal["origin"] = self.originCoordinate as AnyObject
                                 
                                 let endLocationDict = legs[legs.count - 1]["end_location"] as! Dictionary<NSString, AnyObject>
                                 self.destinationCoordinate = CLLocationCoordinate2DMake(endLocationDict["lat"] as! Double, endLocationDict["lng"] as! Double)
-                                returnVal["destination"] = self.destinationCoordinate as AnyObject
                                 
                                 self.originAddress = (legs[0]["start_address"] as! String)
                                 self.destinationAddress = (legs[legs.count - 1]["end_address"] as! String)
                                 
-                                print("returnVal \(String(describing: returnVal))")
-                                self.routePlannerInfo.append(returnVal)
+                                self.calculateDistanceAndDuration()
+                                
                                 completionHandler(status, true)
                             }
                         } else {
@@ -169,27 +164,31 @@ class MapFunctions: NSObject {
         }
         
         let distanceInKilometers: Double = Double(self.totalDistanceInMeters / 1000)
-        print("distance in km: \(String(describing:distanceInKilometers))")
+//        print("distance in km: \(String(describing:distanceInKilometers))")
         
         let minutes = self.totalDurationInSeconds / 60
         let hours = minutes / 60
-        print("duration: \(hours) hours and \(minutes) minutes")
+//        print("duration: \(hours) hours and \(minutes) minutes")
     }
     
-    func routePlanner() {
-        // 4 locations
-        let locationIDs = ["ChIJnSKGEJlZwokRQIpiCvzKzV4", "ChIJaeKcEaRZwokRcllXm5cM7J0", "ChIJ0QCeh5tZwokRh9J_3uvSPjU", "ChIJKxDbe_lYwokRVf__s8CPn-o"] // length 4
-//        var locationCoordinates = [CLLocationCoordinate2D]() // length 4
-//        let locationPolylines = [GMSPolyline]() // length 3
-//        let routes = [Dictionary<NSString, AnyObject>]()
+    func route(placeIDs: [String], completionHandler: @escaping ((_ routes: [Route]?) -> Void)) {
+        var routes = [Route]()
         
-        DispatchQueue.main.async {
-            for i in 0...locationIDs.count-2 {
-                self.getDirectionsBetweenTwoPoints(originPlaceID: locationIDs[i], destinationPlaceID: locationIDs[i+1], withCompletionHandler: {(status, success) -> Void in
-                })
-            }
-        
-            print("routePlannerInfo count: \(String(describing:self.routePlannerInfo.count))")
+        for i in 1...placeIDs.count-1 {
+            self.getDirectionsBetweenTwoPoints(originPlaceID: placeIDs[i-1], destinationPlaceID: placeIDs[i], withCompletionHandler: {(status, success) -> Void in
+                DispatchQueue.main.async {
+                    var currentRoute = Route()
+                    currentRoute.startCoordinate = self.originCoordinate
+                    currentRoute.endCoordinate = self.destinationCoordinate
+                    currentRoute.startAddress = self.originAddress
+                    currentRoute.endAddress = self.destinationAddress
+                    currentRoute.overviewPolyline = self.overviewPolyline
+                    routes.append(currentRoute)
+                    if (routes.count == placeIDs.count-1) {
+                        completionHandler(routes)
+                    }
+                }
+            })
         }
     }
     
