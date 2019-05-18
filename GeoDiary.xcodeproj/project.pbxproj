@@ -14,6 +14,9 @@
 		66F9938222823D5F0039E7DE /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F9938122823D5F0039E7DE /* Location.swift */; };
 		6E159CA1228EF2D5002F9C98 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E159CA0228EF2D5002F9C98 /* RouteViewController.swift */; };
 		6E159CA7228F1A9B002F9C98 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E159CA6228F1A9B002F9C98 /* Route.swift */; };
+		6E159CA9228F5A3D002F9C98 /* RouteChildMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E159CA8228F5A3D002F9C98 /* RouteChildMapViewController.swift */; };
+		6E159CAD228F720E002F9C98 /* StaticCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E159CAC228F720E002F9C98 /* StaticCollectionView.swift */; };
+		6E159CAF228F7EE2002F9C98 /* StaticSpecificCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E159CAE228F7EE2002F9C98 /* StaticSpecificCollectionView.swift */; };
 		6E5F89752285CF1000621B1D /* MapFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DB5D89227FEAE6004D5AE0 /* MapFunctions.swift */; };
 		6E5F89772285D3D900621B1D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E5F89762285D3D900621B1D /* GoogleService-Info.plist */; };
 		6E5F89782285D3D900621B1D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E5F89762285D3D900621B1D /* GoogleService-Info.plist */; };
@@ -68,6 +71,9 @@
 		66F9938122823D5F0039E7DE /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		6E159CA0228EF2D5002F9C98 /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		6E159CA6228F1A9B002F9C98 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		6E159CA8228F5A3D002F9C98 /* RouteChildMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteChildMapViewController.swift; sourceTree = "<group>"; };
+		6E159CAC228F720E002F9C98 /* StaticCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticCollectionView.swift; sourceTree = "<group>"; };
+		6E159CAE228F7EE2002F9C98 /* StaticSpecificCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticSpecificCollectionView.swift; sourceTree = "<group>"; };
 		6E5F89762285D3D900621B1D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6E5F897A2285F8CF00621B1D /* LocationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoView.swift; sourceTree = "<group>"; };
 		6E5F897E2285F8E000621B1D /* LocationInfo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationInfo.xib; sourceTree = "<group>"; };
@@ -190,6 +196,9 @@
 				D9941DB12269811700D01F97 /* Info.plist */,
 				6E5F897A2285F8CF00621B1D /* LocationInfoView.swift */,
 				6E5F897E2285F8E000621B1D /* LocationInfo.xib */,
+				6E159CA8228F5A3D002F9C98 /* RouteChildMapViewController.swift */,
+				6E159CAC228F720E002F9C98 /* StaticCollectionView.swift */,
+				6E159CAE228F7EE2002F9C98 /* StaticSpecificCollectionView.swift */,
 			);
 			path = GeoDiary;
 			sourceTree = "<group>";
@@ -511,11 +520,14 @@
 				D9B7E1BB2276772C00E28BFD /* SpecificMerchantView.swift in Sources */,
 				D96587CC2274E199002654F7 /* CollectionView.swift in Sources */,
 				6E5F89752285CF1000621B1D /* MapFunctions.swift in Sources */,
+				6E159CAF228F7EE2002F9C98 /* StaticSpecificCollectionView.swift in Sources */,
 				D9B7E1B722765FE900E28BFD /* SpecificCollectionView.swift in Sources */,
 				D9941DA82269811500D01F97 /* ViewController.swift in Sources */,
 				66F9938222823D5F0039E7DE /* Location.swift in Sources */,
+				6E159CA9228F5A3D002F9C98 /* RouteChildMapViewController.swift in Sources */,
 				6E159CA7228F1A9B002F9C98 /* Route.swift in Sources */,
 				66DB5D8C227FEB11004D5AE0 /* MapViewController.swift in Sources */,
+				6E159CAD228F720E002F9C98 /* StaticCollectionView.swift in Sources */,
 				66373BF12285CB7C008D54C6 /* PlannerViewController.swift in Sources */,
 				D9B7E1C122768D2700E28BFD /* EditMerchantView.swift in Sources */,
 				D997214C227D353D006D0FAC /* AddNewMerchantView.swift in Sources */,

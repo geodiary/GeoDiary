@@ -25,6 +25,7 @@ class MapFunctions: NSObject {
     var destinationCoordinate: CLLocationCoordinate2D!
     var originAddress: String!
     var destinationAddress: String!
+    var htmlInstructions: String!
     
     var routes = [Route]()
     
@@ -136,6 +137,10 @@ class MapFunctions: NSObject {
                                 self.originAddress = (legs[0]["start_address"] as! String)
                                 self.destinationAddress = (legs[legs.count - 1]["end_address"] as! String)
                                 
+                                if let htmlInstructions = (legs[0]["html_instructions"] as? String) {
+                                    self.htmlInstructions = htmlInstructions
+                                }
+                                
                                 self.calculateDistanceAndDuration()
                                 
                                 completionHandler(status, true)
@@ -164,11 +169,8 @@ class MapFunctions: NSObject {
         }
         
         let distanceInKilometers: Double = Double(self.totalDistanceInMeters / 1000)
-//        print("distance in km: \(String(describing:distanceInKilometers))")
-        
         let minutes = self.totalDurationInSeconds / 60
         let hours = minutes / 60
-//        print("duration: \(hours) hours and \(minutes) minutes")
     }
     
     func route(placeIDs: [String], completionHandler: @escaping ((_ routes: [Route]?) -> Void)) {
@@ -183,6 +185,7 @@ class MapFunctions: NSObject {
                     currentRoute.startAddress = self.originAddress
                     currentRoute.endAddress = self.destinationAddress
                     currentRoute.overviewPolyline = self.overviewPolyline
+                    currentRoute.htmlInstructions = self.htmlInstructions
                     routes.append(currentRoute)
                     if (routes.count == placeIDs.count-1) {
                         completionHandler(routes)

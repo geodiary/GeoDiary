@@ -2,7 +2,7 @@
 //  Route.swift
 //  GeoDiary
 //
-//  Created by Raihan Siddique on 5/17/19.
+//  Created by Sabah Siddique on 5/17/19.
 //  Copyright © 2019 nyu.edu. All rights reserved.
 //
 
@@ -16,6 +16,7 @@ class Route {
     var startAddress: String!
     var endAddress: String!
     var overviewPolyline: Dictionary<NSString, AnyObject>!
+    var htmlInstructions: String!
     
     var description : String {
         var desc = ""
