@@ -42,7 +42,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
         db = Firestore.firestore()
         GIDSignIn.sharedInstance().uiDelegate = self
        
-        //UserDefaults.standard.setIsLoggedIn(value: false)
+        UserDefaults.standard.setIsLoggedIn(value: false)
         
         
         getCollection()
