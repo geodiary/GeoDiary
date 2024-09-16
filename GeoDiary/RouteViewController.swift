@@ -5,6 +5,7 @@
 //  Created by Sabah Siddique on 5/8/19.
 //  Copyright © 2019 nyu.edu. All rights reserved.
 //
+
 import UIKit
 import GoogleMaps
 import GooglePlaces
@@ -74,6 +75,7 @@ extension RouteViewController: UISearchBarDelegate {
         
     }
 }
+
 extension RouteViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {

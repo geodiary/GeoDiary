@@ -171,6 +171,7 @@
 				D9941DAC2269811700D01F97 /* Assets.xcassets */,
 				D9941DAE2269811700D01F97 /* LaunchScreen.storyboard */,
 				D9941DB12269811700D01F97 /* Info.plist */,
+				66877EAD22831AE700743241 /* RouteViewController.swift */,
 			);
 			path = GeoDiary;
 			sourceTree = "<group>";
@@ -491,6 +492,7 @@
 				D9941DA82269811500D01F97 /* ViewController.swift in Sources */,
 				66F9938222823D5F0039E7DE /* Location.swift in Sources */,
 				66DB5D8C227FEB11004D5AE0 /* MapViewController.swift in Sources */,
+				66877EAE22831AE700743241 /* RouteViewController.swift in Sources */,
 				D9B7E1C122768D2700E28BFD /* EditMerchantView.swift in Sources */,
 				D997214C227D353D006D0FAC /* AddNewMerchantView.swift in Sources */,
 				D96587CE2274EE32002654F7 /* UserDefaultsHelper.swift in Sources */,

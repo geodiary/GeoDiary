@@ -18,6 +18,18 @@ class MapFunctions: NSObject {
     var geocodedLatitude: Double!
     var geocodedLongitude: Double!
     
+    let directionsURLBase = "https://maps.googleapis.com/maps/api/directions/json?"
+    var selectedRoute: Dictionary<NSObject, AnyObject>!
+    var overviewPolyline: Dictionary<NSObject, AnyObject>!
+    var originCoordinate: CLLocationCoordinate2D!
+    var destinationCoordinate: CLLocationCoordinate2D!
+    var originAddress: String!
+    var destinationAddress: String!
+    var totalDistanceInMeters: UInt = 0
+    var totalDistance: String!
+    var totalDurationInSeconds: UInt = 0
+    var totalDuration: String!
+    
     override init() {
         super.init()
     }
@@ -82,6 +94,80 @@ class MapFunctions: NSObject {
         } else {
             completionHandler("No valid address.", false)
         }
+    }
+    
+    func getDirections(origin: String!, destination: String!, waypoints: Array<String>!, withCompletionHandler completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
+        
+        if let originLocation = origin {
+            if let destinationLocation = destination {
+                var directionsURLWithQueries = directionsURLBase + "origin=" + originLocation + "&destination=" + destinationLocation + "&key=AIzaSyC1-unUawDB5JY6ZPZU4wwc2HlZb8wMIHw"
+                let fullDirectionsURL = NSURL(string: directionsURLWithQueries)
+                
+                DispatchQueue.main.async {
+//                    let geocodingData = try! Data(contentsOf: fullGeocodeURL! as URL)
+                    let directionsData = try! Data(contentsOf: fullDirectionsURL! as URL)
+                    let directionsDict = try! JSONSerialization.jsonObject(with: directionsData, options: []) as! Dictionary<NSString, Any>
+                    
+                    var error: NSError?
+                    if error != nil {
+                        completionHandler("", false)
+                    } else {
+                        let status = directionsDict["status"] as! String
+                        if status == "OK" {
+                            let routes = directionsDict["routes"] as! Array<Dictionary<NSString, AnyObject>>
+                            let firstRoute = routes[0]
+                            self.selectedRoute = firstRoute
+                            
+                            if let overviewPolyline = (firstRoute["overview_polyline"]) {
+                                self.overviewPolyline = overviewPolyline as! Dictionary<NSString, AnyObject>
+                                
+                                let legs = firstRoute["legs"] as! Array<Dictionary<NSString, AnyObject>>
+                                let startLocationDict = legs[0]["start_location"] as! Dictionary<NSString, AnyObject>
+                                self.originCoordinate = CLLocationCoordinate2DMake(startLocationDict["lat"] as! Double, startLocationDict["lng"] as! Double)
+                                
+                                let endLocationDict = legs[legs.count - 1]["end_location"] as! Dictionary<NSString, AnyObject>
+                                self.destinationCoordinate = CLLocationCoordinate2DMake(endLocationDict["lat"] as! Double, endLocationDict["lng"] as! Double)
+
+                                self.originAddress = legs[0]["start_address"] as! String
+                                self.destinationAddress = legs[legs.count - 1]["end_address"] as! String
+                                
+                                self.calculateDurationAndDistance(legs: legs)
+                                
+                                completionHandler(status, true)
+                            }
+                        } else {
+                            completionHandler(status, false)
+                        }
+                    }
+                }
+            } else {
+                completionHandler("Destination is nil", false)
+            }
+        } else {
+            completionHandler("Origin is nil", false)
+        }
+        
+    }
+    
+    func calculateDurationAndDistance(legs: Array<Dictionary<NSString, AnyObject>>) {
+        print("in calculateDurationAndDistance()")
+        print("legs: \(String(describing: legs))")
+//        for leg in legs {
+//            let distance = leg["distance"] as! Dictionary<NSString, AnyObject>
+//            self.totalDistanceInMeters += distance["value"] as! UInt
+//            let duration = leg["duration"] as! Dictionary<NSString, AnyObject>
+//            self.totalDurationInSeconds += duration["value"] as! UInt
+//        }
+//
+//        let distanceInKilometers: Double = Double(self.totalDistanceInMeters / 1000)
+//        self.totalDistance = "Total distance: \(distanceInKilometers) Km"
+//
+//        let minutes = self.totalDurationInSeconds / 60
+//        let hours = minutes / 60
+//        let days = hours / 24
+//        let hoursRemainder = hours % 24
+//        let minutesRemainder = minutes % 60
+//        self.totalDuration = "Total duration: \(days) days, \(hoursRemainder) hours, \(minutesRemainder) minutes"
     }
     
     func reverseGeocodeByCoordinates(latitude: Double!, longitude: Double!, withCompletionHandler completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
